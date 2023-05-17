@@ -1,0 +1,35 @@
+<div class="container-fluid hx-100 d-block d-sm-none"[style.height.px]="bodyHeight">
+    <nav class="navbar fixed-bottom  ">
+        <div class="container-fluid justify-content-end">
+            <div class="row hx-50 text-end">
+                <a class="navbar-brand" href="#">
+                    <span class="fa-stack fs-2 ">
+                        <i class="fa-solid fa-circle fa-stack-2x blue "></i>
+                        <i class="fa-solid fa-plus fa-stack-1x fs-6 white"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="row hx-60 bg-blue align-items-center text-center ">
+        <div class="col col-2 ">
+            <i class="fa-solid fa-bars white"></i>
+        </div>
+        <div class="col col-1 " [routerLink]="['/gmodule']"><i class="fa-solid fa-arrow-left white"></i></div>
+        <div class="col col-9 text-start"><b class="white">Phy.Inv.Count Headers</b></div>
+    </div>
+    <div class="row overflow-auto "[style.height.px]="bodyHeight-110">
+        <div class="col col-12">
+            <div class="row hx-70 mt-2 ">
+                <div class="col col-12">
+                    <div class="container  border rounded h-100 bg-green">
+                        <div class="row h-60 align-items-end" [routerLink]="['/physicalcount']">
+                            <div class="col col-6"><b>SC_AJ0105_003</b></div>
+                            <div class="col col-6"> <b> 2022-11-15</b></div>
+                        </div>
+                        <div class="row h-40 align-items-center"><b>AJ0105</b></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

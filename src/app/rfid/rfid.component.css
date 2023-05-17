@@ -1,0 +1,30 @@
+.active{
+    color:rgb(37, 93, 166);
+    background-color: white;
+}
+.grey{
+    color:grey;
+}
+.hx-30{
+    height:30px;
+}
+.hx-60{
+    height:60px;
+}
+.hx-70{
+    height:70px;
+}
+.hx-40{
+    height:40px;
+}
+.hx-20{
+    height:20px;
+}
+.hx-100{
+    height:100px;
+}
+.mat-tab-labels{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}

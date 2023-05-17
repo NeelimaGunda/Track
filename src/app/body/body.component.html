@@ -1,0 +1,26 @@
+<div class="container-fluid p-0 hx-100 d-block d-sm-none image"
+    [style.height.px]="bodyHeight-45">
+    <div class="row  hx-60 align-items-center">
+        <div class="col col-12 white fs-5"><b>Welcome Manager</b></div>
+      </div>
+    <div class="row overflow-auto px-1" [style.height.px]="bodyHeight-100-60">
+        <div class="col col-6 hx-150 mb-3 mt-2 " *ngFor="let list of modules; let i=index;">
+            <div class="container hx-150 border rounded text-center bg-white " (click)="goTopage(list)">
+                <div class="row hx-150 align-items-center text-center justify-content-center">
+                    <div class="col col-12">
+                        <div class="">
+                            <img [src]="list['ImageURLAddress']" height="60px" style="width:60px">
+                        </div>
+                        <p class="fs-7 pt-2"><b>{{list['Name']}}</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center justify-content-center text-center" *ngIf="loader">
+        <div class="col col-12">
+            <span class="align-self-center text-center white"><i
+                    class="fa-solid fa-spin fa-spinner align-self-center text-center fs-1 "></i>Loading...</span>
+        </div>
+    </div>
+</div>

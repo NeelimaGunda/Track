@@ -1,0 +1,64 @@
+<mat-drawer-container class="example-container " [style.height.px]="bodyHeight">
+    <mat-drawer #drawer class="example-sidenav" mode="over" style="width: 300px;">
+        <div class="row hx-150  align-items-center bg-blue">
+            <img src="../../assets/apnt.png" class=" p-2 rounded-circle mx-auto" height="100px" style="width: 100px"
+                alt="">
+        </div>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item" *ngFor="let list of module; index as i;"(click)="accor(list['Code'])">
+                <h2 class="accordion-header">
+                    <button class="accordion-button p-0" type="button" data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#panelsStayOpen-collapseOne'+i" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        <img [src]="list['ImageURLAddress']" height="30px" style="width:30px" >
+                        <p class="fs-7 mt-3 px-4">{{list['Name']}}</p>
+                    </button>
+                </h2>
+                <div [attr.id]="'panelsStayOpen-collapseOne'+i" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsStayOpenExample'">
+                    <div class="accordion-body">
+                        <ul class="list-group list-group-flush "*ngFor="let list of accordion; let i=index;">
+                            <li class="list-group-item  border-bottom">{{list['Name']}}</li>
+                          </ul>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </mat-drawer>
+    <div class="container-fluid p-0 hx-100 d-block d-sm-none overflow-auto" [style.height.px]="bodyHeight-45">
+        <!-- <div class="row hx-45 bg-blue align-items-center text-center ">
+            <div class="col col-2 ">
+                <i class="fa-solid fa-bars white" (click)="drawer.toggle()"></i>
+            </div>
+            <div class="col col-1" [routerLink]="['/dashboard']"><i class="fa-solid fa-arrow-left white"></i></div>
+            <div class="col col-9 text-start"><b class="white">{{type['Name']}}</b></div>
+        </div> -->
+        <div class="row bg-grey overflow-auto " [style.height.px]="bodyHeight-45">
+            <div class="col col-12 mt-2">
+                <i class="fa-solid fa-spin fa-spinner align-self-center text-center fs-1" *ngIf="loader"></i>
+                <div class="row hx-50  align-items-center">
+                    <div class="input-group mb-1" >
+                        <input class="form-control border-end-0 border" type="text" placeholder="search"[(ngModel)]="search">
+                        <span class="input-group-append ">
+                            <button class="btn btn-outline-secondary bg-white border-start-0  border ms-n5" type="button">
+                                <i class="fa-solid fa-magnifying-glass blue "></i>
+                            </button>
+                        </span>
+                    </div>
+                </div> 
+                <div class="row hx-80  mb-2" *ngFor="let list of menu|modulepipe:search; let i=index">
+                    <div class="col col-12">
+                        <div class="container  border rounded bg-white " (click)="page1(menu[i])">
+                            <div class="row hx-40 border-bottom align-items-center text-center">
+                                <div class="col col-10 fs-7"><b>{{list['Name']}}</b></div>
+                                <div class="col col-2"> <i class="fa-regular fa-star grey fs-7"></i></div>
+                            </div>
+                            <div class="row hx-40 align-items-center text-center">
+                                <div class="col col-10 fs-7">{{list['Description']}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-drawer-container>

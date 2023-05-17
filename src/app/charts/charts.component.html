@@ -1,0 +1,17 @@
+<div class="container h-100 ">
+    <div class="row text-center mt-2">
+       <ul class="nav nav-tabs border-0 ">
+          <li class="nav-item">
+           <a class="btn btn-secondary"(click)="page('barchart')">Bar chart</a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="btn btn-secondary "(click)="page('linechart')">Line chart</a>
+           </li>
+           <li class="nav-item">
+            <a class="btn btn-secondary"(click)="page('piechart')">Pie chart</a>
+           </li>
+       </ul>
+    </div>
+    <router-outlet></router-outlet>
+</div>
+

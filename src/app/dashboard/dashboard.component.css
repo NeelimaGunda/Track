@@ -1,0 +1,25 @@
+.image{
+    background-image: url('../../assets/background.png');
+    height: auto;
+    width: auto;
+    background-size: cover;
+   }
+   .hx-150{
+    height:150px;
+  }
+  .hx-50{
+    height:50px;
+  }
+  .hx-45{
+    height:45px;
+  }
+  .bg-blue {
+    background-color: rgb(37, 93, 166);
+  }
+  .bg-grey {
+    background-color:lightgrey;
+  }
+ .ml-1{
+    margin-left: 1px;
+ }
+  

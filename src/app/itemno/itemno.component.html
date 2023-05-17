@@ -1,0 +1,36 @@
+<div class="container p-0 hx-100 d-block d-sm-none" [style.height.px]="bodyHeight">
+    <!-- <div class="row hx-70 bg-blue">
+        <div class="col col-12">
+            <div class="row hx-30 align-items-between text-center mt-1 ">
+                <div class="col col-2" [routerLink]="['/physical']"><i class="fa-solid fa-arrow-left white"></i></div>
+                <div class="col col-8 white"><b>Phy. Inv. Count Line</b></div>
+                <div class="col col-2"><i class="fa-solid fa-ellipsis-vertical white"></i></div>
+            </div>
+            <div class="row hx-40 align-items-center text-center mx-2">
+                <div class="col col-4 white fs-6 "[routerLink]="['/physicalcount']">Barcode</div>
+                     <div class="col col-4 white fs-6 active"  >Item No.</div>
+                     <div class="col col-4 white fs-6 "[routerLink]="['/rfid']">RFID</div>
+            </div>
+        </div>
+    </div> -->
+    <div class="row overflow-auto" [style.height.px]="bodyHeight-45">
+        <div class="col col-12">
+            <div class="container">
+                <div class="row text-center justify-content-center" >
+                    <div class="col col-3  p-1 mx-2 border rounded-pill"[style.background-color]="bgc"(click)="lookUp()">Item No.</div>
+                    <div class="col col-4 mx-2 p-1 border  rounded-pill"[style.background-color]="bgc1"(click)="description()">Description</div>
+                    <div class="col col-3 p-1  mx-2 border rounded-pill"[style.background-color]="bgc2"(click)="barCode()">Barcode</div>
+                </div>
+                <div class="row hx-50  mt-1">
+                    <div class="input-group " >
+                        <input class="form-control border-end-0 border" type="text" placeholder="{{enter}}">
+                        <span class="input-group-append ">
+                            <button class="btn btn-outline-secondary border-start-0  border ms-n5" type="button">
+                                <i class="fa-solid fa-magnifying-glass blue"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>

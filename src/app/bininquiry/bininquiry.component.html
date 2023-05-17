@@ -1,0 +1,42 @@
+<div class="container hx-100 d-block d-sm-none"[style.height.px]="bodyHeight">
+    <div class="row hx-40 bg-blue">
+        <div class="col col-2 align-self-center text-center"[routerLink]="['/gmodule']">
+            <i class="fa-solid fa-arrow-left white"></i>
+        </div>
+        <div class="col col-8 align-self-center white"><b>Bin inquiry</b></div>
+        <div class="col col-2 align-self-center text-center"><i class="fa-solid fa-bars-staggered white"[matMenuTriggerFor]="menu"></i>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="show = !show">Search</button>
+              </mat-menu>
+        </div>
+    </div>
+    <div class="row hx-50  mt-1">
+        <div class="input-group "*ngIf="show">
+            <input class="form-control border-end-0 border" type="text" placeholder="search">
+            <span class="input-group-append ">
+                <button class="btn btn-outline-secondary border-start-0  border ms-n5" type="button">
+                    <i class="fa-solid fa-magnifying-glass blue"></i>
+                </button>
+            </span>
+    </div>
+    <div class="row overflow-auto" [style.height.px]="bodyHeight-40">
+        <div class="col col-12">
+            <div class="row hx-70">
+                <div class="col col-10 ">
+                    <label for="stock" class="form-label"><b> Bin</b></label>
+                    <div class="input-group ">
+                        <input class="form-control border-end-0 border" type="text">
+                        <span class="input-group-append ">
+                            <button class="btn btn-outline-secondary border-start-0  border ms-n5" type="button">
+                                <i class="fa-solid fa-barcode"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col col-2  align-self-center mt-4">
+                    <button class="btn" type="button" [routerLink]="['/bins']"><i class="fa-solid fa-ellipsis grey fs-5"></i> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

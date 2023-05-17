@@ -1,0 +1,596 @@
+<mat-drawer-container class="example-container overflow-auto" [style.height.px]="bodyHeight-45">
+    <mat-drawer #drawer1 class="example-sidenav" mode="over" position='start' style="width:390px;">
+        <!-- <div class="row hx-150  align-items-center bg-blue">
+            <img src="../../assets/apnt.png" class=" p-2 rounded-circle mx-auto" height="100px" style="width: 100px"
+                alt="">
+        </div>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item" *ngFor="let list of modules; index as i;" (click)="page(list['Code'])">
+                <h2 class="accordion-header">
+                    <button class="accordion-button p-0" type="button" data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#panelsStayOpen-collapseOne'+i" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        <img [src]="list['ImageURLAddress']" height="30px" style="width:30px">
+                        <p class="fs-7 mt-3 px-4">{{list['Name']}}</p>
+                    </button>
+                </h2>
+                <div [attr.id]="'panelsStayOpen-collapseOne'+i" class="accordion-collapse collapse"
+                    [attr.data-bs-parent]="'#accordionPanelsStayOpenExample'">
+                    <div class="accordion-body">
+                        <ul class="list-group list-group-flush " *ngFor="let list of accordion; let i=index;">
+                            <li class="list-group-item  border-bottom">{{list['Name']}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="container-fluid hx-100 d-block d-sm-none" [style.height.px]="bodyHeight">
+            <div class="row hx-45 align-items-center text-center ">
+                <div class="col col-2 ">
+                    <i class="fa-solid fa-arrow-left" (click)="drawer1.toggle()"></i>
+                </div>
+                <div class="col col-8 text-start white"><b>Bin</b></div>
+                <div class="col col-2 text-start"><i class="fa-solid fa-bars-staggered white"
+                        (click)="show = !show"></i>
+                </div>
+            </div>
+            <div class="row hx-50  mt-1">
+                <div class="input-group " *ngIf="show">
+                    <input class="form-control border-end-0 border" type="text" placeholder="search"
+                        [(ngModel)]="search">
+                    <span class="input-group-append ">
+                        <button class="btn btn-outline-secondary border-start-0  border ms-n5" type="button">
+                            <i class="fa-solid fa-magnifying-glass blue"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="row overflow-auto " [style.height.px]="bodyHeight-45">
+                <div class="col col-12">
+                    <div class="row hx-30 mt-2 align-items-center" *ngFor="let list of bindata|submodulefilter:search;">
+                        <div class="col col-12">
+                            <div class="container border rounded h-100 bg-green">
+                                <div class="row align-items-center ">
+                                    <div class="col col-5 align-self-center">{{list['ZoneCode']}}</div>
+                                    <div class="col col-7 text-center">{{list['No']}}({{list['No']}})</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-center text-center" *ngIf="loader">
+                <div class="col col-12">
+                    <span class="align-self-center text-center "><i
+                            class="fa-solid fa-spin fa-spinner align-self-center text-center fs-1 "></i>Loading...</span>
+                </div>
+            </div>
+        </div>
+    </mat-drawer>
+    <!-- <mat-drawer #drawer class="example-sidenav" mode="over" position='end' style="width:380px;">
+        <div class="row hx-45 bg-blue align-items-center text-center" *ngIf="physical.download">
+            <div class="col col-2"><i class="fa-solid fa-arrow-left white" (click)="drawer.toggle()"></i></div>
+            <div class="col col-6 text-start"><b class="white">Search Bin</b></div>
+            <div class="col col-2"><i class="fa-solid fa-download white"></i></div>
+            <div class="col col-2"><i class="fa-solid fa-bars-staggered white" (click)="show = !show"></i></div>
+        </div>
+        <div class="row hx-45 bg-blue align-items-center text-center" *ngIf="physical.load">
+            <div class="col col-2"><i class="fa-solid fa-arrow-left white" (click)="drawer.toggle()"></i></div>
+            <div class="col col-8 text-start"><b class="white">Search Bin</b></div>
+            <div class="col col-2"><i class="fa-solid fa-bars-staggered white" (click)="show = !show"></i></div>
+        </div>
+        <div class="row hx-30 " *ngIf="physical.tab">
+            <div class="col col-12">
+                <mat-tab-group class="p-0" mat-align-tabs="center">
+                    <mat-tab label="All">
+                        <div class="row hx-30 mt-2 align-items-center" *ngFor="let list of bin|submodulefilter:Search;">
+                            <div class="col col-12">
+                                <div class="container border rounded h-100 bg-green">
+                                    <div class="row align-items-center ">
+                                        <div class="col col-5 align-self-center">{{list['ZoneCode']}}</div>
+                                        <div class="col col-7 text-center">{{list['No']}}({{list['No']}})</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Suggested"> </mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
+        <div class="row hx-50 mt-1">
+            <div class="input-group " *ngIf="show">
+                <input class="form-control border-end-0 border" type="text" placeholder="search" [(ngModel)]="Search">
+                <span class="input-group-append ">
+                    <button class="btn btn-outline-secondary border-start-0  border ms-n5" type="button">
+                        <i class="fa-solid fa-magnifying-glass blue"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="row overflow-auto " [style.height.px]="bodyHeight-60" *ngIf="physical.data">
+            <div class="col col-12">
+                <div class="row hx-30 mt-1  align-items-center" *ngFor="let list of bin|submodulefilter:Search;">
+                    <div class="col col-12">
+                        <div class="container border rounded h-100 bg-green">
+                            <div class="row align-items-center ">
+                                <div class="col col-5 align-self-center">{{list['ZoneCode']}}</div>
+                                <div class="col col-7 text-center">{{list['No']}}({{list['No']}})</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-drawer> -->
+    <div class="container-fluid p-0  hx-100 d-block d-sm-none" [style.height.px]="bodyHeight">
+        <nav class="navbar fixed-bottom p-0" *ngIf="physical.icon">
+            <div class="container-fluid justify-content-end">
+                <div class="row hx-50 text-end">
+                    <span class="fa-stack fs-2" (click)="onClick()">
+                        <i class="fa-solid fa-circle fa-stack-2x blue "></i>
+                        <i class="fa-solid fa-floppy-disk fa-stack-1x fs-4 white"></i>
+                    </span>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar fixed-bottom p-0" *ngIf="physical.Icon">
+            <div class="container-fluid justify-content-end">
+                <div class="row hx-50 text-end">
+                    <a class="navbar-brand" href="#">
+                        <span class="fa-stack fs-2 ">
+                            <i class="fa-solid fa-circle fa-stack-2x blue "></i>
+                            <i class="fa-solid fa-plus fa-stack-1x fs-4 white"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar fixed-bottom p-0 border border-dark" *ngIf="physical.rfid">
+            <div class="container-fluid justify-content-end">
+                <div class="row hx-50">
+                    <div class="col col-8 text-end">
+                        <a class="navbar-brand" href="#">
+                            <span class="fa-stack fs-2 pe-2">
+                                <i class="fa-solid fa-circle fa-stack-2x blue "></i>
+                                <i class="fa-solid fa-floppy-disk fa-stack-1x fs-4 white"></i>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="col col-4 text-start ">
+                        <a class="navbar-brand" href="#">
+                            <span class="fa-stack fs-2 ">
+                                <i class="fa-solid fa-circle fa-stack-2x blue "></i>
+                                <i class="fa-solid fa-floppy-disk fa-stack-1x fs-4 white"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- <div class="row hx-45 bg-blue" *ngIf="physical.com">
+            <div class="col col-12">
+                <div class="row hx-45 align-items-between text-center mt-1 ">
+                    <div class="col col-2"><i class="fa-solid fa-bars white" (click)="drawer1.toggle()"></i> </div>
+                    <div class="col col-2" (click)="goBack()"><i
+                            class="fa-solid fa-arrow-left white"></i>
+                    </div>
+                    <div class="col col-6 white "><b>{{header}}</b></div>
+                    <div class="col col-2"><i class="fa-solid fa-ellipsis-vertical white"
+                            [matMenuTriggerFor]="menu"></i>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>Confirm</button>
+                            <button mat-menu-item>Summary</button>
+                            <button mat-menu-item>Scanned Lines</button>
+                            <button mat-menu-item *ngIf="physical.matorder">Ordered Lines</button>
+                        </mat-menu>
+                    </div>
+                </div>
+                <div class="row hx-40 align-items-center text-center mx-2 pb-1">
+                    <div class="col col-4 white fs-6 active ">Barcode</div>
+                    <div class="col col-4 white fs-6 ">Item No.</div>
+                    <div class="col col-4 white fs-6 ">RFID</div>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div class="row hx-45  align-items-center text-center mt-1" *ngIf="physical.Nav">
+            <div class="col col-2" (click)="goBack()"><i class="fa-solid fa-arrow-left "></i>
+            </div>
+            <div class="col col-8 "><b>{{header}}</b></div>
+            <div class="col col-2"><i class="fa-solid fa-ellipsis-vertical" [matMenuTriggerFor]="menu"></i>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>Summary</button>
+                    <button mat-menu-item>Scanned Lines</button>
+                    <button mat-menu-item>Release Bin</button>
+                </mat-menu>
+            </div>
+        </div> -->
+        <!-- <div class="row hx-45 bg-blue" *ngIf="physical.order">
+            <div class="col col-2 align-self-center text-center"><i class="fa-solid fa-bars white"
+                    (click)="drawer1.toggle()"></i></div>
+            <div class="col col-2 align-self-center text-center"(click)="goBack()">
+                <i class="fa-solid fa-arrow-left white"></i>
+            </div>
+            <div class="col col-6 align-self-center text-start white"><b>{{header}}</b></div>
+            <div class="col col-2 align-self-center text-center"><i class="fa-solid fa-ellipsis-vertical white"
+                    [matMenuTriggerFor]="menu"></i>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="search = !search">Search</button>
+                    <button mat-menu-item>Summary</button>
+                </mat-menu>
+            </div>
+        </div> -->
+        <!-- <div class="row hx-45 bg-blue" *ngIf="physical.Bins">
+            <div class="col col-2 align-self-center text-center" (click)="goBack()">
+                <i class="fa-solid fa-arrow-left white"></i>
+            </div>
+            <div class="col col-8 align-self-center white"><b>{{header}}</b></div>
+            <div class="col col-2 align-self-center text-center"><i class="fa-solid fa-bars-staggered white"
+                    [matMenuTriggerFor]="menu"></i>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="show = !show">Search</button>
+                </mat-menu>
+            </div>
+        </div> -->
+        <!-- <div class="row hx-45 bg-blue" *ngIf="physical.adj">
+            <div class="col col-2 align-self-center text-center"><i class="fa-solid fa-bars white"
+                    (click)="drawer1.toggle()"></i></div>
+            <div class="col col-2 align-self-center text-center"(click)="goBack()">
+                <i class="fa-solid fa-arrow-left white"></i>
+            </div>
+            <div class="col col-6 align-self-center white"><b>{{header}}</b></div>
+            <div class="col col-2 align-self-center text-center"><i class="fa-solid fa-bars-staggered white"
+                    (click)="show = !show"></i>
+            </div>
+        </div> -->
+        <!-- <div class="row hx-45 bg-blue" *ngIf="physical.Look">
+            <div class="col col-2 align-self-center text-center"><i class="fa-solid fa-bars white"
+                    (click)="drawer1.toggle()"></i> </div>
+            <div class="col col-2 align-self-center text-center"(click)="goBack()">
+                <i class="fa-solid fa-arrow-left white"></i>
+            </div>
+            <div class="col col-6 align-self-center white"><b>{{header}}</b></div>
+            <div class="col col-2 align-self-center text-center"><i class="fa-solid fa-ellipsis-vertical white"
+                    [matMenuTriggerFor]="menu"></i>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>Item Card</button>
+                    <button mat-menu-item>Inventory</button>
+                </mat-menu>
+            </div>
+        </div> -->
+        <!-- <div class="row hx-45  align-items-center text-center" *ngIf="physical.Item">
+            <div class="col col-2 "><i class="fa-solid fa-bars" (click)="drawer1.toggle()"></i></div>
+            <div class="col col-2" (click)="goBack()"><i class="fa-solid fa-arrow-left "></i>
+            </div>
+            <div class="col col-6 text-start "><b>{{header}}</b></div>
+            <div class="col col-2" *ngIf="physical.menu"><i class="fa-solid fa-ellipsis-vertical"
+                    [matMenuTriggerFor]="menu"></i>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>Summary</button>
+                    <button mat-menu-item>Scanned lines</button>
+                </mat-menu>
+            </div>
+            <div class="col col-2" *ngIf="physical.mat"><i class="fa-solid fa-ellipsis-vertical "
+                    [matMenuTriggerFor]="menu"></i>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>General</button>
+                    <button mat-menu-item>Barcodes</button>
+                    <button mat-menu-item>Images</button>
+                    <button mat-menu-item>Inventory</button>
+                    <button mat-menu-item>Sales History</button>
+                </mat-menu>
+            </div>
+        </div> -->
+        <div class="row hx-40 bg-blue align-items-center text-center " *ngIf="physical.link">
+            <div class="col col-4  fs-6 " [style.color]="text" (click)="Back()">Barcode</div>
+            <div class="col col-4  fs-6 " [style.color]="text1" (click)="itemno(header)">Item No.</div>
+            <div class="col col-4  fs-6 " [style.color]="text2" (click)="rfid()">RFID</div>
+        </div>
+        <div class="row hx-40 align-items-center bg-blue text-center" *ngIf="physical.Item">
+            <div class="col col-6 fs-6 " [style.color]="text" (click)="back()">Barcode</div>
+            <div class="col col-6  fs-6" [style.color]="text1" (click)="submit(header)">Item No.</div>
+        </div>
+        <!-- <div class="row hx-50  mt-1">
+            <div class="input-group " *ngIf="show">
+                <input class="form-control border-end-0 border" type="text" placeholder="search">
+                <span class="input-group-append ">
+                    <button class="btn btn-outline-secondary border-start-0  border ms-n5" type="button">
+                        <i class="fa-solid fa-magnifying-glass blue"></i>
+                    </button>
+                </span>
+            </div>
+        </div> -->
+        <div class="row hx-50  mt-1" *ngIf="search">
+            <div class="col col-10">
+                <div class="input-group">
+                    <input class="form-control border-end-0 border" type="text" placeholder="search">
+                    <span class="input-group-append ">
+                        <button class="btn btn-outline-secondary border-start-0  border ms-n5" type="button">
+                            <i class="fa-solid fa-magnifying-glass blue"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col col-2 align-self-center"><i class="fa-solid fa-ellipsis grey fs-5"></i></div>
+        </div>
+        <!-- ----------------------------------------------- -->
+        <div class="row overflow-auto" [style.height.px]="bodyHeight-50-70">
+            <div class="col col-12">
+                <div class="container">
+                    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+                        <div class="row hx-70" *ngIf="physical.stock">
+                            <div class="col col-10">
+                                <label for="stock" class="form-label"><b>Stock Bin</b></label>
+                                <div class="input-group ">
+                                    <input class="form-control border-end-0 border" type="text" name="stock"
+                                        [(ngModel)]="bind.Stock">
+                                    <span class="input-group-append ">
+                                        <button class="btn btn-outline-secondary border-start-0  border ms-n5"
+                                            type="button">
+                                            <i class="fa-solid fa-barcode"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col col-2 align-self-center mt-4">
+                                <button class="btn" type="button" (click)="s()"><i
+                                        class="fa-solid fa-ellipsis grey fs-5"></i> </button>
+                            </div>
+                        </div>
+                        <div class="row hx-70" *ngIf="physical.Location">
+                            <div class="col col-10">
+                                <label for="stock" class="form-label"><b>Stock Bin</b></label>
+                                <div class="input-group ">
+                                    <input class="form-control border-end-0 border" type="text" name="stock"
+                                        [(ngModel)]="bind.Stock">
+                                    <span class="input-group-append ">
+                                        <button class="btn btn-outline-secondary border-start-0  border ms-n5"
+                                            type="button">
+                                            <i class="fa-solid fa-barcode"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col col-2 align-self-center mt-4">
+                                <button class="btn" type="button" (click)="ellip()"><i
+                                        class="fa-solid fa-ellipsis grey fs-5"></i> </button>
+                            </div>
+                        </div>
+                        <div class="row hx-70" *ngIf="physical.Itemno">
+                            <div class=" col col-10 ">
+                                <label for="itemno" class="form-label"><b>Item No.</b></label>
+                                <div class="input-group">
+                                    <input class="form-control border-end-0 border" type="text"
+                                        placeholder="Enter an item No.">
+                                    <span class="input-group-append">
+                                        <button class="btn btn-outline-secondary border-start-0  border ms-n5"
+                                            type="button">
+                                            <i class="fa fa-search blue"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col col-2 align-self-center text-center mt-4">
+                                <button class="btn " type="button">
+                                    <i class="fa-solid fa-ellipsis grey fs-5"(click)="itemLook()"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row hx-70" *ngIf="physical.Bin">
+                            <div class="col col-10">
+                                <label for="stock" class="form-label"><b>Bin</b></label>
+                                <div class="input-group ">
+                                    <input class="form-control border-end-0 border" type="text" name="bins"
+                                        [(ngModel)]="find">
+                                    <span class="input-group-append ">
+                                        <button class="btn btn-outline-secondary border-start-0  border ms-n5"
+                                            type="button">
+                                            <i class="fa-solid fa-barcode"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col col-2 align-self-center mt-4">
+                                <button class="btn" type="button"><i class="fa-solid fa-ellipsis grey fs-5"
+                                        (click)="bins()"></i> </button>
+                            </div>
+                        </div>
+                        <div class="row overflow-auto " [style.height.px]="bodyHeight-45" *ngIf="physical.Bin">
+                            <div class="col col-12">
+                                <div class="row hx-30 mt-2 align-items-center" *ngFor="let list of bindata|bin:find;">
+                                    <div class="col col-12">
+                                        <div class="container border rounded h-100 bg-green">
+                                            <div class="row align-items-center ">
+                                                <div
+                                                    class="col col-12 align-self-center border border-light text-center">
+                                                    <b class="fs-7">{{list['Description2']}}</b>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col col-5">
+                                                    <div class="container">
+                                                        <div class="row"><b>Unit</b></div>
+                                                        <div class="row"><b>Qty.(On hand/Res./Avlb.)</b></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-4">
+                                                    <div class="container">
+                                                        <div class="row">{{list['Name2']}}</div>
+                                                        <div class="row">{{list['Qty']}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-3 align-self-center  text-center">
+                                                    <img [src]="list['ImageURLAddress']" height="60px"
+                                                        style="width:60px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row hx-70" *ngIf="physical.Barcode">
+                            <div class=" col col-10 ">
+                                <label for="barcode" class="form-label"><b>Barcode</b></label>
+                                <div class="input-group">
+                                    <input class="form-control border-end-0 border" type="text" name="barcode"
+                                        [(ngModel)]="bind.Barcode">
+                                    <span class="input-group-append">
+                                        <button class="btn btn-outline-secondary border-start-0  border ms-n5"
+                                            type="button">
+                                            <i class="fa fa-search blue"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col col-2 align-self-center text-center mt-4">
+                                <button class="btn " type="button">
+                                    <i class="fa-solid fa-barcode "></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row hx-70" *ngIf="physical.place">
+                            <div class="col col-10">
+                                <label for="stock" class="form-label"><b>Location Place</b></label>
+                                <div class="input-group ">
+                                    <input class="form-control border-end-0 border" type="text" name="place"
+                                        [(ngModel)]="bind.Place">
+                                    <span class="input-group-append ">
+                                        <button class="btn btn-outline-secondary border-start-0  border ms-n5"
+                                            type="button">
+                                            <i class="fa-solid fa-barcode"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col col-2 align-self-center mt-4">
+                                <button class="btn" type="button"><i class="fa-solid fa-ellipsis grey fs-5"
+                                        (click)="ellip()"></i> </button>
+                            </div>
+                        </div>
+                        <div class="row hx-70" *ngIf="physical.Unit">
+                            <div class="col col-5 align-self-center">
+                                <label for="unit" class="form-label"><b>Unit</b></label>
+                                <input type="text" class="form-control" name="unit" [(ngModel)]="bind.Unit">
+                            </div>
+                            <div class="col col-5 align-self-center text-center ">
+                                <label for="quan" class="form-label "><b>Qty.</b></label><br>
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-sm border rounded-circle"(click)=" decreaseValue()" data-field="">
+                                        <span class=""><i class="fa-solid fa-caret-down"></i></span>
+                                    </button>
+                                </span>
+                                <input type="float number" step="1.0" [(ngModel)]="quantity" max="5.0" min="1.0" [(ngModel)]="quantity" name="quantity" id="number"
+                                    class="quantity-field border-0 text-center w-25">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-sm border rounded-circle"(click)="increaseValue()" data-field="">
+                                        <span class=" fs-7"><i class=" fa-solid fa-caret-up"></i></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="col col-2 align-self-center text-center mt-4">
+                                <div class="form-check fs-1">
+                                    <input class="form-check-input border-primary border-3 " type="checkbox"
+                                        name="stock">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row hx-90" *ngIf="physical.date">
+                            <div class="col col-12 align-self-center">
+                                <label for="date" class="form-label"><b>Expiry Date</b></label>
+                                <!-- <div class="input-group">
+                                    <input type="text" class="form-control" name="reason" data-date-format="DD/MM/YYYY"
+                                        placeholder="DD/MM/YYYY" id="date" />
+                                    <span class="input-group-append">
+                                        <span class="input-group-text bg-light d-block ">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </span>
+                                </div> -->
+                            </div>
+                            <mat-form-field appearance="outline" >
+                                <mat-label></mat-label>
+                                <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" name="date" class="hx-10 p-0"[(ngModel)]="bind.date">
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field>
+                        </div>
+                        <div class="row hx-70" *ngIf="physical.Description">
+                            <div class="col col-12 align-self-center ">
+                                <label for="description" class="form-label"><b>Description</b></label>
+                                <input type="text" class="form-control" name="description"
+                                    [(ngModel)]="bind.Description">
+                            </div>
+                        </div>
+                        <div class="row  hx-70" *ngIf="physical.Measure">
+                            <div class="col col-12 align-self-center">
+                                <label for="unit of measure" class="form-label"><b>Unit of Measure</b></label>
+                                <input type="text" class="form-control" name="measure" [(ngModel)]="bind.Measure">
+                            </div>
+                        </div>
+                        <div class="row  hx-70" *ngIf="physical.Price">
+                            <div class="col col-12 align-self-center">
+                                <label for="price" class="form-label"><b>Retail Price</b></label>
+                                <input type="text" class="form-control" name="retailprice" [(ngModel)]="bind.Retail">
+                            </div>
+                        </div>
+                        <div class="row  hx-70" *ngIf="physical.shelfPrice">
+                            <div class="col col-12 align-self-center">
+                                <label for="price" class="form-label"><b>Shelf Price</b></label>
+                                <input type="text" class="form-control" name="retailprice" [(ngModel)]="bind.shelf">
+                            </div>
+                        </div>
+                        <div class="row hx-70" *ngIf="physical.Variant">
+                            <div class="col col-12 align-self-center">
+                                <label for="variant" class="form-label"><b>Variant</b></label>
+                                <input type="text" class="form-control" name="variant" [(ngModel)]="bind.Variant">
+                            </div>
+                        </div>
+                        <div class="row hx-70" *ngIf="physical.UnitPrice">
+                            <div class="col col-6 align-self-center">
+                                <label for="price" class="form-label"><b>Unit Price</b></label>
+                                <input type="number" class="form-control" name="unitprice" [(ngModel)]="bind.UnitPrice">
+                            </div>
+                            <div class="col col-6">
+                                <label for="amount" class="form-label"><b>Amount</b></label>
+                                <input type="number" class="form-control" name="amount" [(ngModel)]="bind.Price">
+                            </div>
+                        </div>
+                        <div class="row hx-70" *ngIf="physical.Reason">
+                            <div class="col col-12 align-self-center">
+                                <label for="reason" class="form-label"><b>Reason</b></label>
+                                <input type="text" class="form-control" name="reason" [(ngModel)]="bind.Reason">
+                            </div>
+                        </div>
+                        <div class="row hx-70" *ngIf="physical.rfid">
+                            <div class="col col-12 fs-6 ">
+                                <mat-tab-group mat-align-tabs="center">
+                                    <mat-tab label="Non Tracking "> 1 </mat-tab>
+                                    <mat-tab label="Batch Tracking"> 2 </mat-tab>
+                                    <mat-tab label="Serial Tracking"> 3 </mat-tab>
+                                </mat-tab-group>
+                            </div>
+                        </div>
+                     </form>
+                </div>
+                <div class="container"*ngIf="physical.lookup">
+                    <div class="row text-center justify-content-center" >
+                        <div class="col col-3  p-1 mx-2 border rounded-pill"[style.background-color]="bgc"(click)="lookUp()">Item No.</div>
+                        <div class="col col-4 mx-2 p-1 border  rounded-pill"[style.background-color]="bgc1"(click)="description()">Description</div>
+                        <div class="col col-3 p-1  mx-2 border rounded-pill"[style.background-color]="bgc2"(click)="barCode()">Barcode</div>
+                    </div>
+                    <div class="row hx-50  mt-1">
+                        <div class="input-group " >
+                            <input class="form-control border-end-0 border" type="text" placeholder="{{enter}}">
+                            <span class="input-group-append ">
+                                <button class="btn btn-outline-secondary border-start-0  border ms-n5" type="button">
+                                    <i class="fa-solid fa-magnifying-glass blue"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-drawer-container>

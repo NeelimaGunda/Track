@@ -1,0 +1,67 @@
+<div class="container-fluid hx-100  d-block d-sm-none" [style.height.px]="bodyHeight">
+  <nav class="navbar fixed-bottom  ">
+    <div class="container-fluid justify-content-end">
+      <div class="row hx-50 text-end ">
+        <!-- <button  type="submit" > -->
+          <span class="fa-stack fs-2 "(click)="onclick()" >
+            <i class="fa-solid fa-circle fa-stack-2x blue "></i>
+            <i class="fa-solid fa-floppy-disk fa-stack-1x fs-5 white"></i>
+          </span>
+        <!-- </button> -->
+      </div>
+    </div>
+  </nav>
+  <div class="row hx-50 border bg-blue ">
+    <div class="col col-2  align-self-center  ">
+      <i class="fa-solid fa-arrow-left pe-2 white" [routerLink]="['/login']"></i></div>
+      <div class="col col-10 align-self-center">
+      <b class="white">Terminal Setup</b>
+    </div>
+  </div>
+  <div class=" row overflow-auto " [style.height.px]="bodyHeight-50-50">
+    <div class="col col-12">
+      <div class="row hx-70 ">
+        <div class="col col-12 align-self-center ">
+          <label for="url" class="form-label"><b>URL</b></label>
+          <input type="url" class="form-control" [(ngModel)]="url">
+        </div>
+      </div>
+      <div class="row hx-70">
+        <div class="col col-12 align-self-center">
+          <label for="company" class="form-label"><b>Company</b></label>
+          <select class="form-select"(change)="getCompanies($event)" [(ngModel)]="tcompany">
+            <option *ngFor="let list of companies;let i=index;" [value]="list['Code']">{{list['Name']}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row hx-70">
+        <div class="col col-12 align-self-center">
+          <label for="store" class="form-label "><b>Store</b><i class="fa-solid fa-spin fa-spinner align-self-center p-2 fs-7"*ngIf="loader"></i></label>
+          <select class="form-select"  [(ngModel)]="tstore">
+            <!-- <option  *ngIf="loader">  Loading...</option> -->
+            <option *ngFor="let company of stores; index as i;" [value]="company['Code']">{{company['Name']}} </option> 
+            <!-- <span class="spinner-border spinner-border-sm text-primary"role="status"*ngIf="loader" ></span> -->
+          </select>
+        </div>
+      </div>
+      <div class="row hx-70">
+        <div class="col col-12 align-self-center">
+          <label for="terminal no" class="form-label " ><b>Terminal No</b></label>
+          <input required maxlength="4"  type="number" class="form-control" [(ngModel)]="tnum">
+        </div>
+      </div>
+      <div class="row hx-10">
+        <div class="col col-12 align-self-center">
+          <label for="terminal name" class="form-label "><b>Terminal Name</b></label>
+          <input  type="text" class="form-control "  [(ngModel)]="tname">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="col.col-12 text-end mt-1 ">
+    <span class=" fa-stack fs-5 ">
+      <i class="fa-solid fa-circle fa-stack-2x blue "></i>
+      <i class="fa-solid fa-floppy-disk fa-stack-1x white fs-6"></i>
+    </span>
+  </div> -->

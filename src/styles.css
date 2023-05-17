@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ngx-bootstrap/datepicker/bs-datepicker.css";
+
+.hx-100{
+    height: 100px;
+}
+.hx-45{
+    height: 45px;
+}
+.hx-60{
+    height: 60px;
+}
+.hx-100{
+    height: 100px;
+}
+.hx-567{
+    height: 567px !important;
+}
+.h-20{
+    height: 20%;
+}
+.h-15{
+    height: 15%;
+}
+.h-40{
+    height: 40%;
+}
+.h-10{
+    height: 10%;
+}
+.h-60{
+    height: 60%;
+}
+.hx-150 {
+    height: 150px !important;
+}
+.bg-blue{
+   background-color: rgb(37, 93, 166);
+}
+.blue{
+   color: rgb(37, 93, 166);
+}
+.fs-1{
+    font-size:100%;
+}
+.white{
+    color: white;
+}
+.fs-7{
+    font-size:small;
+}
+.fs-8{
+    font-size:300%;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

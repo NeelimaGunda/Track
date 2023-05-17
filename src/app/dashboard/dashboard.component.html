@@ -1,0 +1,184 @@
+<mat-drawer-container class="example-container " [style.height.px]="bodyHeight">
+  <mat-drawer #drawer class="example-sidenav" mode="over" position='start' style="width:300px;">
+    <div class="row hx-150  align-items-center bg-blue">
+      <img src="../../assets/apnt.png" class=" p-2 rounded-circle mx-auto" height="100px" style="width: 100px" alt="">
+    </div>
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item" *ngFor="let list of modules; index as i;" (click)="page(list['Code'])">
+        <h2 class="accordion-header">
+          <button class="accordion-button p-0" type="button" data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#panelsStayOpen-collapseOne'+i" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseOne">
+            <img [src]="list['ImageURLAddress']" height="30px" style="width:30px">
+            <p class="fs-7 mt-3 px-4">{{list['Name']}}</p>
+          </button>
+        </h2>
+        <div [attr.id]="'panelsStayOpen-collapseOne'+i" class="accordion-collapse collapse"
+          [attr.data-bs-parent]="'#accordionPanelsStayOpenExample'">
+          <div class="accordion-body">
+            <ul class="list-group list-group-flush " *ngFor="let list of accordion; let i=index;" (click)="sideNav(list)">
+              <li class="list-group-item  border-bottom" (click)="drawer.toggle()">{{list['Name']}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <mat-accordion>
+      <mat-expansion-panel *ngFor="let list of modules; let i=index;" (click)="page(list['Code'])">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img [src]="list['ImageURLAddress']" height="30px" style="width:30px">
+          </mat-panel-title>
+          <mat-panel-description>
+            <p class="fs-7 pt-2"><b>{{list['Name']}}</b></p>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list *ngFor="let menu of accordion; let i=index;">
+          <mat-list-item>{{menu['Name']}}</mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion> -->
+  </mat-drawer>
+  <mat-drawer #drawer1 class="example-sidenav" mode="over" position='end' style="width:380px;">
+    <div class="row hx-45 bg-blue align-items-center text-center">
+      <div class="col col-2 ">
+        <i class="fa-solid fa-bars white"></i>
+      </div>
+      <div class="col col-1"><i class="fa-solid fa-arrow-left white" (click)="drawer1.toggle()"></i></div>
+      <div class="col col-9 text-start"><b class="white">Status Report</b></div>
+    </div>
+
+  </mat-drawer>
+  <!-- ---------------------------------------------- -->
+  <div class="container-fluid p-0 hx-100 d-block d-sm-none "[style.height.px]="bodyHeight">
+    <nav class="navbar fixed-bottom p-0 " *ngIf="dash.nav">
+      <div class="container-fluid justify-content-end">
+        <div class="row hx-60 text-end">
+          <a class="navbar-brand">
+            <span class="fa-stack fs-2" (click)="drawer1.toggle()">
+              <i class="fa-solid fa-circle fa-stack-2x dark"></i>
+              <i class="fa-solid fa-square-poll-vertical fa-stack-1x fs-4 white"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="row hx-100">
+      <div class="col col-12">
+        <div class="row hx-45 px-1 align-items-center bg-white pt-2">
+          <div class="col col-1 text-center"*ngIf="body.arrow"><i class="fa-solid fa-arrow-left " (click)="back()"></i></div>
+          <div class="col col-1 text-center"*ngIf="sidearrow"><i class="fa-solid fa-arrow-left"(click)="Nav()"></i></div>
+          <div class="col col-1 text-start" *ngIf="array"(click)="goBack()"><i class="fa-solid fa-arrow-left"></i>
+          </div>
+          <div class="col col-1"*ngIf="c"><i class="fa-solid fa-arrow-left " (click)="toggle()"></i></div>
+          <div class="col col-1"*ngIf="b">
+            <i class="fa-solid fa-arrow-left"(click)="return()"></i>
+        </div>
+          <div class="col col-1  text-center"><i class="fa-solid fa-bars" (click)="drawer.toggle()"></i></div>
+          <div class="col col-9 text-center"*ngIf="dash.name"><b >Modules</b></div>
+          <div class="col col-10 text-start"*ngIf="body.menu"><b class="">{{type['Name']}}</b></div>
+          <div class="col col-1  text-center"*ngIf="dash.module" [routerLink]="['/module']">
+            <i class="fa-solid fa-list" ></i>
+          </div>
+          <div class="col col-1 text-center"*ngIf="dash.ellips" ><i class="fa-solid fa-ellipsis-vertical" 
+              [matMenuTriggerFor]="menu"></i>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>My favourites</button>
+              <button mat-menu-item>Frequently Used</button>
+              <button mat-menu-item>User Preference</button>
+            </mat-menu>
+          </div>
+          <!-- --------- -->
+          <div class="col col-8 text-center" *ngIf="a"><b>{{header}}</b></div>
+          <div class="col col-8 text-start" *ngIf="b"><b>Bin</b></div>
+          <div class="col col-8 text-start" *ngIf="c" ><b class="">Search Bin</b></div>
+          <div class="col col-2 text-start" *ngIf="b"><i class="fa-solid fa-bars-staggered" (click)="show = !show"></i>
+          </div>
+          <div class="col col-2 text-start" *ngIf="c"><i class="fa-solid fa-bars-staggered" (click)="show = !show"></i>
+          </div>
+          <div class="col col-1"*ngIf="d"><i class="fa-solid fa-arrow-left" (click)="draw()"></i></div>
+            <div class="col col-6 text-start"*ngIf="d"><b class="">Search Bin</b></div>
+            <div class="col col-2"*ngIf="d"><i class="fa-solid fa-download "></i></div>
+            <div class="col col-2"*ngIf="d"><i class="fa-solid fa-bars-staggered " (click)="show = !show"></i></div>
+          <div class="col col-2 text-center" *ngIf="physical.Nav"><i class="fa-solid fa-ellipsis-vertical"
+              [matMenuTriggerFor]="menu"></i>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Summary</button>
+              <button mat-menu-item>Scanned Lines</button>
+              <button mat-menu-item>Release Bin</button>
+            </mat-menu>
+          </div>
+          <div class="col col-2 text-center" *ngIf="physical.shelf"><i class="fa-solid fa-ellipsis-vertical"
+            [matMenuTriggerFor]="menu"></i>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Confirm</button>
+            <button mat-menu-item>Summary</button>
+            <button mat-menu-item>Scanned Lines</button>
+          </mat-menu>
+        </div>
+          <div class="col col-2 text-center" *ngIf="physical.menu"><i class="fa-solid fa-ellipsis-vertical"
+              [matMenuTriggerFor]="menu"></i>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Summary</button>
+              <button mat-menu-item>Scanned lines</button>
+            </mat-menu>
+          </div>
+          <div class="col col-2 text-center" *ngIf="physical.mat"><i class="fa-solid fa-ellipsis-vertical "
+              [matMenuTriggerFor]="menu"></i>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>General</button>
+              <button mat-menu-item>Barcodes</button>
+              <button mat-menu-item>Images</button>
+              <button mat-menu-item>Inventory</button>
+              <button mat-menu-item>Sales History</button>
+            </mat-menu>
+          </div>
+          <div class="col col-2 align-self-center text-center" *ngIf="physical.Bins"><i
+              class="fa-solid fa-bars-staggered " [matMenuTriggerFor]="menu"></i>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="show = !show">Search</button>
+            </mat-menu>
+          </div>
+          <div class="col col-2 align-self-center text-center" *ngIf="physical.adj"><i
+              class="fa-solid fa-bars-staggered" (click)="show = !show"></i>
+          </div>
+          <div class="col col-2 align-self-center text-center" *ngIf="physical.Look"><i
+              class="fa-solid fa-ellipsis-vertical" [matMenuTriggerFor]="menu"></i>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Item Card</button>
+              <button mat-menu-item>Inventory</button>
+            </mat-menu>
+          </div>
+          <div class="col col-2 align-self-center text-center" *ngIf="physical.order"><i
+              class="fa-solid fa-ellipsis-vertical" [matMenuTriggerFor]="menu"></i>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="show = !show">Search</button>
+              <button mat-menu-item>Summary</button>
+            </mat-menu>
+          </div>
+          <div class="col col-2 align-self-center text-center" *ngIf="physical.com"><i
+              class="fa-solid fa-ellipsis-vertical" [matMenuTriggerFor]="menu"></i>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Confirm</button>
+              <button mat-menu-item>Summary</button>
+              <button mat-menu-item>Scanned Lines</button>
+              <button mat-menu-item *ngIf="physical.matorder">Ordered Lines</button>
+            </mat-menu>
+          </div>
+          <div class="row mt-1">
+            <div class="input-group " *ngIf="show">
+              <input class="form-control border-end-0 border" type="text" placeholder="search" [(ngModel)]="search">
+              <span class="input-group-append ">
+                <button class="btn btn-outline-secondary border-start-0  border ms-n5" type="button">
+                  <i class="fa-solid fa-magnifying-glass blue"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</mat-drawer-container>

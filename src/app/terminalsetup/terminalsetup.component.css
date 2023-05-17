@@ -1,0 +1,58 @@
+.hx-100 {
+    height: 100px;
+  }
+  
+  .hx-40 {
+    height: 40px;
+  }
+  
+  .hx-30 {
+    height: 30px;
+  }
+  
+  .hx-20 {
+    height: 20px;
+  }
+  
+  .hx-10 {
+    height: 10px;
+  }
+  .hx-5{
+    height:5px;
+  }
+  
+  .hx-60 {
+    height: 60px;
+  }
+  
+  .hx-70 {
+    height: 70px;
+  }
+  
+  .hx-50 {
+    height: 50px;
+  }
+  
+  .hx-80 {
+    height: 80px;
+  }
+  
+  .hx-90 {
+    height: 90px;
+  }
+  
+  .bg-blue {
+    background-color: rgb(37, 93, 166);
+  }
+  
+  .text-white {
+    color: white;
+  }
+  
+  .white {
+    color: white;
+  }
+  .mt-0{
+    margin-top: 0%;
+  }
+  

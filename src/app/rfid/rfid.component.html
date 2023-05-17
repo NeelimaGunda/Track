@@ -1,0 +1,47 @@
+<div class="container hx-100 d-block d-sm-none" [style.height.px]="bodyHeight">
+    <nav class="navbar fixed-bottom p-0 ">
+        <div class="container-fluid justify-content-end">
+            <div class="row hx-50  ">
+                <div class="col col-8 border ">
+                    <a class="navbar-brand" href="#">
+                        <span class="fa-stack fs-2 pe-2">
+                            <i class="fa-solid fa-circle fa-stack-2x blue "></i>
+                            <i class="fa-solid fa-floppy-disk fa-stack-1x fs-4 white"></i>
+                        </span>
+                    </a>
+                </div>
+                <div class="col col-4 border  ">
+                    <a class="navbar-brand" href="#">
+                        <span class="fa-stack fs-2 ">
+                            <i class="fa-solid fa-circle fa-stack-2x blue "></i>
+                            <i class="fa-solid fa-floppy-disk fa-stack-1x fs-4 white"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- <div class="row hx-70 bg-blue">
+        <div class="col col-12">
+            <div class="row hx-30 align-items-between text-center mt-1 ">
+                <div class="col col-2" [routerLink]="['/physical']"><i class="fa-solid fa-arrow-left white"></i></div>
+                <div class="col col-8 white"><b>Phy. Inv. Count Line</b></div>
+                <div class="col col-2"><i class="fa-solid fa-ellipsis-vertical white"></i></div>
+            </div>
+            <div class="row hx-40 align-items-center text-center mx-2">
+                <div class="col col-4 white fs-6 " [routerLink]="['/physicalcount']">Barcode</div>
+                <div class="col col-4 white fs-6 " [routerLink]="['/itemno']">Item No.</div>
+                <div class="col col-4 white fs-6 active">RFID</div>
+            </div>
+        </div>
+    </div> -->
+    <div class="row overflow-auto" [style.height.px]="bodyHeight-50-70">
+        <div class="col col-12 fs-6 ">
+            <mat-tab-group mat-align-tabs="center">
+                <mat-tab label="Non Tracking ">  1 </mat-tab>
+                <mat-tab label="Batch Tracking"> 2 </mat-tab>
+                <mat-tab label="Serial Tracking"> 3 </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

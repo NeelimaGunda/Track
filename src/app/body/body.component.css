@@ -1,0 +1,9 @@
+.image{
+    background-image: url('../../assets/background.png');
+    height: auto;
+    width: auto;
+    background-size: cover;
+   }
+   .hx-45{
+    height: 45px;
+}

@@ -1,0 +1,98 @@
+<div class="container-fluid bg-grey d-block d-sm-none " [style.height.px]="bodyHeight">
+  <div class=" fixed-bottom bg-white">
+    <div class="row hx-100 overflow-auto align-items-center">
+      <div class="col col-3 text-center ">
+        <img src="../../assets/apnt.png" class=" p-1 rounded-circle mx-auto" height="70px" style="width:70px" alt="">
+      </div>
+      <div class="col col-9  ">
+        <p>iNTrack Version 1.0.299<br>
+          <span class="fa-stack fs-8">
+            <i class="fa-regular fa-circle fa-stack-2x  "></i>
+            <i class="fa-solid fa-c fa-stack-1x fs-7 "></i></span>AP&T Business Solutions<br>All rights reserved</p>
+      </div>
+    </div>
+  </div>
+<div class="row hx-50 border bg-blue mb-2 ">
+    <div class="col col-2  align-self-center  ">
+      <i class="fa-solid fa-arrow-left pe-2 white" [routerLink]="['/']"></i>
+    </div>
+    <div class="col col-10 align-self-center">
+      <b class="white">My Information</b>
+    </div>
+  </div>
+  <div class="row overflow-auto" [style.height.px]="bodyHeight-150">
+    <div class="col col-12">
+      <div class="row hx-90 bg-white border border-rounded ">
+        <div class="col col-12">
+          <div class="container bg-white ">
+            <div class="row align-items-center">
+              <div class="col col-4 "><b>Store</b></div>
+              <div class="col col-8">{{ store }}</div>
+            </div>
+            <div class="row align-items-center ">
+              <div class="col col-4 "><b>Terminal</b></div>
+              <div class="col col-8">{{terminal}}</div>
+            </div>
+            <div class="row align-items-center ">
+              <div class="col col-4 align-self-center"><b>Date</b></div>
+              <div class="col col-8">{{dateToday|date:"EEE d MMM h:mm:ss"}}</div>
+            </div>
+            <div class="row  align-items-center ">
+              <div class="col col-4 "><b>Last Sync.On</b></div>
+              <div class="col col-8">{{sync}}</div>
+            </div>
+            <div class="row align-items-center ">
+              <div class="col col-4 "><b>IP Address</b></div>
+              <div class="col col-8">{{ip}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row  mt-2 mb-3 bg-white border border-rounded" [style.height.px]="bodyHeight-150-90">
+        <div class="col col-12">
+          <div class="container">
+            <div class="row hx-50 blue align-items-center"><b>Select masters to sync</b></div>
+            <div class="row hx-50  align-items-center bg-grey">
+              <div class="col col-2 align-self-center"><i class="fa-solid fa-arrows-rotate blue fs-3"></i></div>
+              <div class="col col-10">Users</div>
+            </div>
+            <div class="row hx-50  align-items-center">
+              <div class="col col-2 align-self-center"><i class="fa-solid fa-arrows-rotate blue fs-3"></i></div>
+              <div class="col col-10">Customers</div>
+            </div>
+            <div class="row hx-50  align-items-center  bg-grey">
+              <div class="col col-2 align-self-center"><i class="fa-solid fa-arrows-rotate blue fs-3"></i></div>
+              <div class="col col-10">Vendors</div>
+            </div>
+            <div class="row hx-50  align-items-center  ">
+              <div class="col col-2 align-self-center"><i class="fa-solid fa-arrows-rotate blue fs-3"></i></div>
+              <div class="col col-10">Items</div>
+            </div>
+            <div class="row hx-50  align-items-center  bg-grey">
+              <div class="col col-2 align-self-center"><i class="fa-solid fa-arrows-rotate blue fs-3"></i></div>
+              <div class="col col-10">Item Vendors</div>
+            </div>
+            <div class="row hx-50  align-items-center">
+              <div class="col col-2 align-self-center"><i class="fa-solid fa-arrows-rotate blue fs-3"></i></div>
+              <div class="col col-10">Bins</div>
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <nav class="navbar ">
+              <div class="container-fluid justify-content-end">
+                <div class="row hx-60 text-end text-center ">
+                  <a class="navbar-brand" href="#">
+                    <span class="fa-stack fs-2 ">
+                      <i class="fa-solid fa-circle fa-stack-2x blue "></i>
+                      <i class="fa-solid fa-cloud-arrow-down fa-stack-1x fs-5 white"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

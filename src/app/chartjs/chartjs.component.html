@@ -1,0 +1,29 @@
+<div class="container h-100 bg-pink">
+    <div class="row text-center mt-2">
+        <ul class="nav nav-tabs border-0 ">
+            <li class="nav-item">
+                <a class="btn  btn-sm btn-secondary" (click)="pag('Bar')">Bar chart</a>
+               
+            </li>
+            <li class="nav-item px-2">
+                <a class="btn btn-sm btn-secondary " (click)="pag('Line')">Line chart</a>
+               
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-sm btn-secondary" (click)="pag('Pie')">Pie chart</a>
+                
+            </li>
+            <li class="nav-item px-2">
+                <a class="btn btn-sm btn-secondary" (click)="pag('Radar')">Radar</a>
+                
+            </li>
+            <!-- <li class="nav-item px-2">
+                <a class="btn btn-sm btn-secondary" (click)="routeJs()">JS</a>
+                
+            </li> -->
+        </ul>
+    </div>
+    <div class="chart-container hx-100 bg-light">
+    <canvas id="chartholder" width="652" height="500">{{chart}}</canvas>
+    </div>
+</div>
