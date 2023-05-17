@@ -5,7 +5,6 @@ import { TerminalsetupComponent } from './terminalsetup/terminalsetup.component'
 import { PhysicalComponent } from './physical/physical.component';
 import { PhysicalcountComponent } from './physicalcount/physicalcount.component';
 import { ItemnoComponent } from './itemno/itemno.component';
-import { BininquiryComponent } from './bininquiry/bininquiry.component';
 import { RfidComponent } from './rfid/rfid.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GenericsubmoduleComponent } from './genericsubmodule/genericsubmodule.component';
@@ -29,12 +28,11 @@ const routes: Routes = [
   { path: "physical", component: PhysicalComponent },
   // { path: "physicalcount", component: PhysicalcountComponent},
   { path: "itemno", component: ItemnoComponent },
-  { path: "bininquiry", component: BininquiryComponent },
   { path: "rfid", component: RfidComponent },
   {
     path: "dashboard", component: DashboardComponent,
     children: [
-      {path:"",component:BodyComponent},
+      { path: "", component: BodyComponent },
       { path: "gmodule", component: GenericsubmoduleComponent },
       { path: "physicalcount", component: PhysicalcountComponent },
       { path: "bins", component: BinsComponent },

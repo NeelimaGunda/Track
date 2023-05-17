@@ -8,7 +8,6 @@ import { TerminalsetupComponent } from './terminalsetup/terminalsetup.component'
 import { PhysicalComponent } from './physical/physical.component';
 import { PhysicalcountComponent } from './physicalcount/physicalcount.component';
 import { ItemnoComponent } from './itemno/itemno.component';
-import { BininquiryComponent } from './bininquiry/bininquiry.component';
 import { RfidComponent } from './rfid/rfid.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GenericsubmoduleComponent } from './genericsubmodule/genericsubmodule.component';
@@ -24,18 +23,18 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { BinsComponent } from './bins/bins.component';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {SubmodulefilterPipe } from './submodulefilter.pipe';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { SubmodulefilterPipe } from './submodulefilter.pipe';
+import { MatTabsModule } from '@angular/material/tabs';
 import { StockComponent } from './stock/stock.component';
 import { BodyComponent } from './body/body.component';
 import { BinPipe } from './bin.pipe';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { ModulepipePipe } from './modulepipe.pipe';
@@ -49,7 +48,6 @@ import { ModulepipePipe } from './modulepipe.pipe';
     PhysicalComponent,
     PhysicalcountComponent,
     ItemnoComponent,
-    BininquiryComponent,
     RfidComponent,
     DashboardComponent,
     GenericsubmoduleComponent,
@@ -67,8 +65,8 @@ import { ModulepipePipe } from './modulepipe.pipe';
     BodyComponent,
     BinPipe,
     ModulepipePipe,
-  
-  
+
+
 
   ],
   imports: [
@@ -82,7 +80,7 @@ import { ModulepipePipe } from './modulepipe.pipe';
     MatListModule,
     MatMenuModule,
     MatButtonModule,
-    MatFormFieldModule, 
+    MatFormFieldModule,
     MatExpansionModule,
     MatTabsModule,
     MatDatepickerModule,
