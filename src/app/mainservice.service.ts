@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Chart } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -48,9 +49,9 @@ export class MainserviceService {
   endPoint: any = {
     "getimscompanies": "GetIMSCompanies",
     "getimsstores": "GetIMSStores",
-    "getimsmodules":"GetIMSModules",
-    "getimssubmodules":"GetIMSSubmodules",
-    "getimsbins":"GetIMSBins"
+    "getimsmodules": "GetIMSModules",
+    "getimssubmodules": "GetIMSSubmodules",
+    "getimsbins": "GetIMSBins"
   };
   iMSStores: any = [];
   iMSStoresSub: any = new Subject();
@@ -65,7 +66,7 @@ export class MainserviceService {
   iMSBins: any = [];
   iMSBinsSub: any = new Subject();
   genericControllerJson: any = {};
-  genericControllerJsonSubject:any = new Subject();
+  genericControllerJsonSubject: any = new Subject();
   constructor(private http: HttpClient) {
     // this.getdata();
     this.genericControllerJsonSubject.subscribe((data: any) => {
@@ -75,32 +76,35 @@ export class MainserviceService {
     this.iMSCompaniesSub.subscribe((data: any) => {
       console.log("coming to service in the future IMS Companies subject");
       this.iMSCompanies = data;
-      localStorage.setItem('company',JSON.stringify(this.iMSCompanies));
-      
+      // Setting the data of imsComapnies in the Local Storage with the key name company.
+      localStorage.setItem('company', JSON.stringify(this.iMSCompanies));
     });
     this.iMSStoresSub.subscribe((data: any) => {
       console.log("coming to service in the future IMS stores subject");
       this.iMSStores = data;
-      localStorage.setItem('store',JSON.stringify(this.iMSStores));
+      // Setting the data of imsStores in the Local Storage with the key name store.
+      localStorage.setItem('store', JSON.stringify(this.iMSStores));
     });
     this.iMSBinsSub.subscribe((data: any) => {
       console.log("coming to service in the future IMS bins subject");
       this.iMSBins = data;
-      localStorage.setItem('bins',JSON.stringify(this.iMSBins));
+      // Setting the data of imsBins in the Local Storage with the key name bins.
+      localStorage.setItem('bins', JSON.stringify(this.iMSBins));
     });
     this.iMSModulesSub.subscribe((data: any) => {
       console.log("coming to service in the future IMS modules subject");
       this.iMSModules = data;
-      localStorage.setItem('modules',JSON.stringify(this.iMSModules));
+      // Setting the data of imsModules in the Local Storage with the key name modules.
+      localStorage.setItem('modules', JSON.stringify(this.iMSModules));
     });
     this.iMSSubmodulesSub.subscribe((data: any) => {
       console.log("coming to service in the future IMS submodules subject");
       this.iMSSubmodules = data;
-      localStorage.setItem('submodules',JSON.stringify(this.iMSSubmodules));
+      // Setting the data of imsSubmodules in the Local Storage with the key name submodules.
+      localStorage.setItem('submodules', JSON.stringify(this.iMSSubmodules));
     });
     this.SubmodulesSub.subscribe((data: any) => {
-      // console.log("coming to service in the future IMS submodules subject");
-      this.Submodules= data;
+      this.Submodules = data;
     });
     this.storesub.subscribe((data: any) => {
       this.store = data;
@@ -119,7 +123,7 @@ export class MainserviceService {
       console.log(this.b);
     });
     this.dashsub.subscribe((data: any) => {
-      this.dash= data;
+      this.dash = data;
       console.log(this.dash);
     });
     this.bodysub.subscribe((data: any) => {
@@ -139,22 +143,19 @@ export class MainserviceService {
       console.log(this.c);
     });
     this.headersub.subscribe((data: any) => {
-      this.header= data;
+      this.header = data;
     });
     this.companysub.subscribe((data: any) => {
       this.company = data;
     });
     this.turlcode.subscribe((data: any) => {
       this.turl = data;
-      // console.log(this.turl);
     });
     this.terminalnamesub.subscribe((data: any) => {
       this.terminalname = data;
-      // console.log(this.terminalname);
     });
     this.terminalnumsub.subscribe((data: any) => {
       this.terminalnum = data;
-      // console.log(this.terminalnum);
     });
     this.moduleCodeSub.subscribe((data: any) => {
       this.moduleCode = data;
@@ -165,7 +166,6 @@ export class MainserviceService {
     this.listcode.subscribe((data: any) => {
       this.list = data;
     });
-
   }
   page(chartype: any) {
     try {
@@ -203,32 +203,32 @@ export class MainserviceService {
       }
     })
   }
-// getdata(){
-//   console.log('update data');
-//   const existingData:any =localStorage.getItem('company');
-//       this.iMSCompanies = JSON.parse(existingData);
-//      this.http.get(this.preurl + this.endPoint['getimscompanies']).subscribe((newData) => {
-//       if (JSON.stringify(newData) !== JSON.stringify(existingData)) {
-//         // Update the data in local storage if it is different from the new data
-//         localStorage.setItem('company', JSON.stringify(newData));
-//       }
-//      });
-// }
-sideNav(a:any){
+  // getdata(){
+  //   console.log('update data');
+  //   const existingData:any =localStorage.getItem('company');
+  //       this.iMSCompanies = JSON.parse(existingData);
+  //      this.http.get(this.preurl + this.endPoint['getimscompanies']).subscribe((newData) => {
+  //       if (JSON.stringify(newData) !== JSON.stringify(existingData)) {
+  //         // Update the data in local storage if it is different from the new data
+  //         localStorage.setItem('company', JSON.stringify(newData));
+  //       }
+  //      });
+  // }
+  sideNav(a: any) {
     this.bsub.next(false);
     this.asub.next(true);
-    this.bodysub.next(this.body={ arrow: false, menu: false })
-  console.log(a.Code);
-  switch (a.Code) {
-    // inventory
-    case "PIC":
-      this.headersub.next(a.Name2);
-      this.bind = { Stock: "Bluk", Barcode: "00012000002", Bin: "Bluk", Unit: "Each", Description: "Camera", Variant: "34", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-      this.physical = { link: true, icon: true, load: true, Nav: true, stock: true, Barcode: true, Unit: true, Description: true, Variant: true, UnitPrice: true, Reason: true };
-      this.genericControllerJsonSubject.next(this.physical);
-      // this.bindsub.next(this.bind);
-      // console.log(this.genericControllerJson);
-      break;
+    this.bodysub.next(this.body = { arrow: false, menu: false })
+    console.log(a.Code);
+    switch (a.Code) {
+      // inventory
+      case "PIC":
+        this.headersub.next(a.Name2);
+        this.bind = { Stock: "Bluk", Barcode: "00012000002", Bin: "Bluk", Unit: "Each", Description: "Camera", Variant: "34", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
+        this.physical = { link: true, icon: true, load: true, Nav: true, stock: true, Barcode: true, Unit: true, Description: true, Variant: true, UnitPrice: true, Reason: true };
+        this.genericControllerJsonSubject.next(this.physical);
+        // this.bindsub.next(this.bind);
+        // console.log(this.genericControllerJson);
+        break;
       case "IPC":
         this.headersub.next(a.Name2);
         this.bind = { Barcode: "00012000002", Unit: "Each", Description: "Pc", Price: "1234.13", Measure: "sdf", Retail: "12345" };
@@ -236,7 +236,7 @@ sideNav(a:any){
         this.genericControllerJsonSubject.next(this.physical);
         // this.bindsub.next(this.bind);
         break;
-        case "IBC":
+      case "IBC":
         this.headersub.next(a.Name2);
         this.bind = { Bin: "Bluk" };
         this.physical = { Bins: true, Bin: true };
@@ -430,29 +430,28 @@ sideNav(a:any){
         this.physical = { order: true };
         this.genericControllerJsonSubject.next(this.physical);
         break;
-}
+    }
 
-}
+  }
+  // function to  make an API call to retrive the companies data
   fetchImsCompanies() {
     return this.http.get(this.preurl + this.endPoint['getimscompanies']);
-    
-
   }
+  // function to  make an API call to retrive the stores data
   fetchImsStores(code: any) {
     return this.http.get(this.preurl + this.endPoint['getimsstores'] + '/' + code);
-
   }
+  // function to  make an API call to retrive the modules data
   fetchImsModules() {
-    return this.http.get(this.preurl + this.endPoint['getimsmodules'] + '/' + "?companyStoreFilter.companyCode="+this.company+"&companyStoreFilter.storeCode="+this.store);
-
+    return this.http.get(this.preurl + this.endPoint['getimsmodules'] + '/' + "?companyStoreFilter.companyCode=" + this.company + "&companyStoreFilter.storeCode=" + this.store);
   }
+  // function to  make an API call to retrive the submodules data
   fetchImsSubmodules() {
-    return this.http.get(this.preurl + this.endPoint['getimssubmodules'] + '/' + "?companyStoreFilter.companyCode="+this.company+"&companyStoreFilter.storeCode="+this.store);
-
+    return this.http.get(this.preurl + this.endPoint['getimssubmodules'] + '/' + "?companyStoreFilter.companyCode=" + this.company + "&companyStoreFilter.storeCode=" + this.store);
   }
+  // function to  make an API call to retrive the bins data
   fetchImsBins() {
-    return this.http.get(this.preurl + this.endPoint['getimsbins'] + '/' + "?companyStoreFilter.companyCode="+this.company+"&companyStoreFilter.storeCode="+this.store);
-
+    return this.http.get(this.preurl + this.endPoint['getimsbins'] + '/' + "?companyStoreFilter.companyCode=" + this.company + "&companyStoreFilter.storeCode=" + this.store);
   }
 
 }

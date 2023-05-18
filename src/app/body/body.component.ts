@@ -279,13 +279,14 @@ export class BodyComponent {
   //   this.service.asub.next(false);
   //   this.service.genericControllerJsonSubject.next(this.physical = {});
   // }
-  page(moduleCode: any) {
-    console.log(moduleCode);
-    this.service.SubmodulesSub.next(moduleCode);
-    this.selectedModule = moduleCode;
-    this.accordion = this.submodule.filter((e: any) => e['ModuleCode'] == moduleCode);
-  }
+  // page(moduleCode: any) {
+  //   console.log(moduleCode);
+  //   this.service.SubmodulesSub.next(moduleCode);
+  //   this.selectedModule = moduleCode;
+  //   this.accordion = this.submodule.filter((e: any) => e['ModuleCode'] == moduleCode);
+  // }
   ngOnInit() {
+    console.log("hiuh");
     console.log(this.modules);
     if (this.modules == null || this.modules.length == 0) { // && this.stores!=null
       // console.log(this.companies[1]);

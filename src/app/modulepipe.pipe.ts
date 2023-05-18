@@ -6,6 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ModulepipePipe implements PipeTransform {
 
   transform(value: any,search: string): any {
+    // value contains the submodules data
     if (!search || (search && search[0] == "")) {
       console.log(value);
       return value;

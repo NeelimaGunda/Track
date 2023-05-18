@@ -5,6 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SubmodulefilterPipe implements PipeTransform {
   transform(value: any, ...args: any[]): any {
+    // value contains the bins data
     if (!args || (args && args[0] == "")) {
       return value;
     } else {

@@ -6,6 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class BinPipe implements PipeTransform {
 
   transform(value: any, find: string): any {
+    // find contains the bin data
     if (!find || (find && find[0] == "")) {
       return;
     }

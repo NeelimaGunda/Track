@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router , ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MainserviceService } from '../mainservice.service';
 import { Location } from '@angular/common';
 @Component({
@@ -201,70 +201,55 @@ export class DashboardComponent {
     "UpdatedDate": "1900-01-01T00:00:00", "route": "../ware"
   },
   ]
-  bodyHeight: any = 0;
-  img: any = "url('../../assets/background.png')";
-  url: any;
-  b = false;
-  d = false;
-  a = false;
-  array = false;
-  c = false;
-  header: any = "";
   modules: any = [];
-  loader: boolean = false;
   submodule: any = [];
   accordion: any = [];
   type: any = [];
-  search: any = "";
+  bodyHeight: any = 0;
+  img: any = "url('../../assets/background.png')";
+  url: any;
+  a = false;
+  b = false;
+  c = false;
+  d = false;
+  array = false;
+  loader: boolean = false;
   show = false;
   sidearrow = false;
+  search: any = "";
+  header: any = "";
   selectedModule: any = "";
   body: any = { arrow: false, menu: false };
   dash: any = { nav: true, name: true, module: true, ellips: true }
   nav: boolean = true;
   physical: any = {};
-  constructor(private router: Router, private location: Location, private service: MainserviceService,private route:ActivatedRoute) {
+  constructor(private router: Router, private location: Location, private service: MainserviceService, private route: ActivatedRoute) {
+    // Getting the height of the body.
     let height: any = document.getElementsByTagName('body')[0];
     console.log(height.offsetHeight);
     this.bodyHeight = height.offsetHeight;
+    // Retrieving modules data from the local storage.
     let cdata: any = localStorage.getItem('modules');
     this.modules = JSON.parse(cdata);
+    console.log(this.modules);
+    // Retrieving submodules data from the local storage.
+    let data: any = localStorage.getItem('submodules');
+    this.submodule = JSON.parse(data);
+    console.log(this.submodule);
+    //  If the data for modules is not available in the local storage, an API call will be initiated to fetch the data, 
+    // and the retrieved data will be subscribed to.
     this.service.iMSModulesSub.subscribe((data: any) => {
       this.modules = data;
     });
-    this.type = this.service.moduleCode;
-    console.log(this.type);
     console.log(this.service.iMSModules);
-    this.modules = this.service.iMSModules;
-    console.log(this.modules);
-    console.log(this.service.iMSSubmodules);
-    this.submodule = this.service.iMSSubmodules;
-    // console.log("terminal form data");
-    // console.log("url:" + this.service.turl);
-    // console.log("company:" + this.service.company);
-    // console.log("store:" + this.service.store);
-    // console.log("terminal number:" + this.service.terminalnum);
-    // console.log("terminal name:" + this.service.terminalname);
+    //  If the data for submodules is not available in the local storage, an API call will be initiated to fetch the data, 
+    // and the retrieved data will be subscribed to.
     this.service.iMSSubmodulesSub.subscribe((data: any) => {
       this.submodule = data;
     })
-    // this.type = this.service.moduleCode;
-    // console.log(this.type);
+    console.log(this.service.iMSSubmodules);
   }
-  // goTopage(a: any) {
-  //   this.img = "";
-  //   console.log(a.Code);
-  //   this.dots = false;
-  //   this.head = false;
-  //   this.list = false;
-  //   this.arrow = true;
-  //   this.menu = true;
-  //   this.nav = false;
-  //   this.service.moduleCodeSub.next(a);
-  //   this.type = this.service.moduleCode;
-  //   console.log(this.type);
-  //   this.router.navigate(['dashboard/gmodule']);
-  // }
+  // Navigating back to the Dashboard component from the GModule component.
   back() {
     this.a = false;
     this.body = { arrow: false, menu: false };
@@ -272,35 +257,42 @@ export class DashboardComponent {
     this.nav = true;
     this.router.navigate(['/dashboard']);
   }
+  // Navigating back to the Gmodule component from the physicalcount component.
   goBack() {
-    // this.router.navigate(['/dashboard/gmodule']);
     this.location.back();
     this.service.arraysub.next(false);
     this.service.asub.next(false);
     this.service.bodysub.next(this.body = { arrow: true, menu: true });
     this.service.genericControllerJsonSubject.next(this.physical = {});
   }
+  // Navigating back to the Physicalcount(Bin Inquiry) component from the Bins component.
   return() {
     this.location.back();
+    this.array = true;
     this.service.bsub.next(false);
     this.service.asub.next(true);
     this.service.genericControllerJsonSubject.next(this.physical = { Bins: true, Bin: true });
-    // this.service.genericControllerJsonSubject.next(this.physical = {});
+
   }
+  // Navigating back to the Physicalcount component from the Stock component.
   toggle() {
     this.location.back();
+    this.array = true;
     this.service.csub.next(false);
     this.service.asub.next(true);
     this.physical = { link: true, icon: true, load: true, Nav: true, stock: true, Barcode: true, Unit: true, Description: true, Variant: true, UnitPrice: true, Reason: true };
     this.service.genericControllerJsonSubject.next(this.physical);
   }
+  // Navigating back to the Physicalcount(Warehouse) component from the Stock component.
   draw() {
     this.location.back();
+    this.array = true;
     this.service.dsub.next(false);
     this.service.asub.next(true);
     this.physical = { data: true, download: true, Item: true, menu: true, Location: true, Barcode: true, place: true, Unit: true, Description: true };
     this.service.genericControllerJsonSubject.next(this.physical);
   }
+  // method to filter the data of the submodule 
   page(moduleCode: any) {
     console.log(moduleCode);
     this.service.SubmodulesSub.next(moduleCode);
@@ -308,21 +300,22 @@ export class DashboardComponent {
     this.accordion = this.submodule.filter((e: any) => e['ModuleCode'] == moduleCode);
     console.log(this.accordion);
   }
+  // Navigate to the Physical Count component from the side navigation in the Dashboard component.
   sideNav(list: any) {
     this.sidearrow = true;
     this.dash = { nav: false, name: false, module: false, ellips: false }
     this.service.sideNav(list);
     this.router.navigate(['dashboard/physicalcount']);
   }
-  Nav(){
+  // Navigating back to the Dashboard component from the physicalcount component.
+  Nav() {
     this.router.navigate(['/dashboard']);
     // this.location.back();
-    this.sidearrow=false;
-    this.dash = { nav:true, name: true, module: true, ellips: true };
+    this.sidearrow = false;
+    this.dash = { nav: true, name: true, module: true, ellips: true };
     this.service.asub.next(false);
     this.service.genericControllerJsonSubject.next(this.physical = {});
-    // this.service.bodysub.next(this.body = { arrow: true, menu: true });
-  
+
   }
   ngOnInit() {
     this.service.searchsub.next(this.search);
@@ -361,14 +354,15 @@ export class DashboardComponent {
       this.physical = data;
       console.log(this.physical);
     })
-    if (this.modules.length != 0){
+    console.log(this.modules);
+    if (this.modules.length == 0) {
       this.fetchData();
     }
-    else
-    {
+    else {
       console.log(this.modules);
     }
   }
+  // function to make an API call to fetch the data of modules and subscribe to the retrieved data. 
   fetchData() {
     console.log("Calling fetch data in app component");
     this.loader = true;
@@ -381,6 +375,7 @@ export class DashboardComponent {
       console.log(err);
     })
   }
+  // function to make an API call to fetch the data of submodules and subscribe to the retrieved data. 
   fetchSubData() {
     console.log("Calling fetch data in app component");
     this.loader = true;

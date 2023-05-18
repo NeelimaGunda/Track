@@ -19,12 +19,14 @@ import { InfoComponent } from './info/info.component';
 import { BinsComponent } from './bins/bins.component';
 import { StockComponent } from './stock/stock.component';
 import { BodyComponent } from './body/body.component';
+import { ModuleComponent } from './module/module.component';
 
 
 const routes: Routes = [
   { path: "", component: TerminalsetupComponent },
   { path: "login", component: LoginComponent },
   { path: "info", component: InfoComponent },
+  { path: "module", component: ModuleComponent },
   { path: "physical", component: PhysicalComponent },
   // { path: "physicalcount", component: PhysicalcountComponent},
   { path: "itemno", component: ItemnoComponent },

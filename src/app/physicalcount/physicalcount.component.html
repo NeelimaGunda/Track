@@ -1,29 +1,5 @@
 <mat-drawer-container class="example-container overflow-auto" [style.height.px]="bodyHeight-45">
     <mat-drawer #drawer1 class="example-sidenav" mode="over" position='start' style="width:390px;">
-        <!-- <div class="row hx-150  align-items-center bg-blue">
-            <img src="../../assets/apnt.png" class=" p-2 rounded-circle mx-auto" height="100px" style="width: 100px"
-                alt="">
-        </div>
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item" *ngFor="let list of modules; index as i;" (click)="page(list['Code'])">
-                <h2 class="accordion-header">
-                    <button class="accordion-button p-0" type="button" data-bs-toggle="collapse"
-                        [attr.data-bs-target]="'#panelsStayOpen-collapseOne'+i" aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseOne">
-                        <img [src]="list['ImageURLAddress']" height="30px" style="width:30px">
-                        <p class="fs-7 mt-3 px-4">{{list['Name']}}</p>
-                    </button>
-                </h2>
-                <div [attr.id]="'panelsStayOpen-collapseOne'+i" class="accordion-collapse collapse"
-                    [attr.data-bs-parent]="'#accordionPanelsStayOpenExample'">
-                    <div class="accordion-body">
-                        <ul class="list-group list-group-flush " *ngFor="let list of accordion; let i=index;">
-                            <li class="list-group-item  border-bottom">{{list['Name']}}</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div class="container-fluid hx-100 d-block d-sm-none" [style.height.px]="bodyHeight">
             <div class="row hx-45 align-items-center text-center ">
                 <div class="col col-2 ">
@@ -123,6 +99,7 @@
             </div>
         </div>
     </mat-drawer> -->
+    <!-- ------------------------------- -->
     <div class="container-fluid p-0  hx-100 d-block d-sm-none" [style.height.px]="bodyHeight">
         <nav class="navbar fixed-bottom p-0" *ngIf="physical.icon">
             <div class="container-fluid justify-content-end">
@@ -290,16 +267,6 @@
             <div class="col col-6 fs-6 " [style.color]="text" (click)="back()">Barcode</div>
             <div class="col col-6  fs-6" [style.color]="text1" (click)="submit(header)">Item No.</div>
         </div>
-        <!-- <div class="row hx-50  mt-1">
-            <div class="input-group " *ngIf="show">
-                <input class="form-control border-end-0 border" type="text" placeholder="search">
-                <span class="input-group-append ">
-                    <button class="btn btn-outline-secondary border-start-0  border ms-n5" type="button">
-                        <i class="fa-solid fa-magnifying-glass blue"></i>
-                    </button>
-                </span>
-            </div>
-        </div> -->
         <div class="row hx-50  mt-1" *ngIf="search">
             <div class="col col-10">
                 <div class="input-group">
@@ -372,7 +339,7 @@
                             </div>
                             <div class="col col-2 align-self-center text-center mt-4">
                                 <button class="btn " type="button">
-                                    <i class="fa-solid fa-ellipsis grey fs-5"(click)="itemLook()"></i>
+                                    <i class="fa-solid fa-ellipsis grey fs-5" (click)="itemLook()"></i>
                                 </button>
                             </div>
                         </div>
@@ -476,14 +443,17 @@
                             <div class="col col-5 align-self-center text-center ">
                                 <label for="quan" class="form-label "><b>Qty.</b></label><br>
                                 <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-sm border rounded-circle"(click)=" decreaseValue()" data-field="">
+                                    <button type="submit" class="btn btn-sm border rounded-circle"
+                                        (click)=" decreaseValue()" data-field="">
                                         <span class=""><i class="fa-solid fa-caret-down"></i></span>
                                     </button>
                                 </span>
-                                <input type="float number" step="1.0" [(ngModel)]="quantity" max="5.0" min="1.0" [(ngModel)]="quantity" name="quantity" id="number"
+                                <input type="float number" step="1.0" [(ngModel)]="quantity" max="5.0" min="1.0"
+                                    [(ngModel)]="quantity" name="quantity" id="number"
                                     class="quantity-field border-0 text-center w-25">
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-sm border rounded-circle"(click)="increaseValue()" data-field="">
+                                    <button type="button" class="btn btn-sm border rounded-circle"
+                                        (click)="increaseValue()" data-field="">
                                         <span class=" fs-7"><i class=" fa-solid fa-caret-up"></i></span>
                                     </button>
                                 </span>
@@ -508,12 +478,13 @@
                                     </span>
                                 </div> -->
                             </div>
-                            <mat-form-field appearance="outline" >
+                            <mat-form-field appearance="outline">
                                 <mat-label></mat-label>
-                                <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" name="date" class="hx-10 p-0"[(ngModel)]="bind.date">
+                                <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" name="date"
+                                    class="hx-10 p-0" [(ngModel)]="bind.date">
                                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
-                              </mat-form-field>
+                            </mat-form-field>
                         </div>
                         <div class="row hx-70" *ngIf="physical.Description">
                             <div class="col col-12 align-self-center ">
@@ -571,16 +542,19 @@
                                 </mat-tab-group>
                             </div>
                         </div>
-                     </form>
+                    </form>
                 </div>
-                <div class="container"*ngIf="physical.lookup">
-                    <div class="row text-center justify-content-center" >
-                        <div class="col col-3  p-1 mx-2 border rounded-pill"[style.background-color]="bgc"(click)="lookUp()">Item No.</div>
-                        <div class="col col-4 mx-2 p-1 border  rounded-pill"[style.background-color]="bgc1"(click)="description()">Description</div>
-                        <div class="col col-3 p-1  mx-2 border rounded-pill"[style.background-color]="bgc2"(click)="barCode()">Barcode</div>
+                <div class="container" *ngIf="physical.lookup">
+                    <div class="row text-center justify-content-center">
+                        <div class="col col-3  p-1 mx-2 border rounded-pill" [style.background-color]="bgc"
+                            (click)="lookUp()">Item No.</div>
+                        <div class="col col-4 mx-2 p-1 border  rounded-pill" [style.background-color]="bgc1"
+                            (click)="description()">Description</div>
+                        <div class="col col-3 p-1  mx-2 border rounded-pill" [style.background-color]="bgc2"
+                            (click)="barCode()">Barcode</div>
                     </div>
                     <div class="row hx-50  mt-1">
-                        <div class="input-group " >
+                        <div class="input-group ">
                             <input class="form-control border-end-0 border" type="text" placeholder="{{enter}}">
                             <span class="input-group-append ">
                                 <button class="btn btn-outline-secondary border-start-0  border ms-n5" type="button">
@@ -588,7 +562,7 @@
                                 </button>
                             </span>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>

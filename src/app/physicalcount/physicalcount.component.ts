@@ -3,8 +3,6 @@ import { MainserviceService } from '../mainservice.service';
 import { NgForm } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-// import * as $ from 'jquery';
-// import 'bootstrap-datepicker';
 
 @Component({
   selector: 'app-physicalcount',
@@ -12,13 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./physicalcount.component.css']
 })
 export class PhysicalcountComponent {
-  bodyHeight: any = 0;
-  quantity= 1.0;
-  selectedDate:any= Date;
-  stock: boolean = false;
-  physical: any;
-  header: any;
-  bind: any;
   bindata: any =
     [{
       "Id": 64, "CompanyCode": "APNT",
@@ -568,11 +559,6 @@ export class PhysicalcountComponent {
       "UpdatedDate": "2023-04-26T16:29:01.855358+04:00"
     }
     ];
-  show = false;
-  search = false;
-  loader: boolean = false;
-  bin: any;
-  selectedModule: any;
   accordion: any = [];
   modules: any = [];
   submodule: any = [];
@@ -1086,51 +1072,47 @@ export class PhysicalcountComponent {
       "UpdatedDate": "2023-04-26T16:29:01.855358+04:00"
     }
     ];
+  bodyHeight: any = 0;
+  quantity = 1.0;
+  selectedDate: any = Date;
+  stock: boolean = false;
+  physical: any;
+  header: any;
+  bind: any;
+  show = false;
+  search = false;
+  loader: boolean = false;
+  bin: any;
+  selectedModule: any;
   Search: any = "";
   find: any = "";
   a: any = true;
-  // color: any = "white";
   text: any = "white";
-  // color1:any;
   text1: any;
   text2: any;
-  bgc:any= " rgb(37, 93, 166)";
-  bgc1:any;
-  bgc2:any;
-  enter:any="Enter an Item no.";
+  bgc: any = " rgb(37, 93, 166)";
+  bgc1: any;
+  bgc2: any;
+  enter: any = "Enter an Item no.";
   constructor(private service: MainserviceService, private location: Location, private router: Router) {
+    // Getting the height of the body.
+    let height: any = document.getElementsByTagName('body')[0];
+    console.log(height.offsetHeight);
+    this.bodyHeight = height.offsetHeight;
     console.log(this.service.genericControllerJson)
     this.physical = this.service.genericControllerJson;
     this.header = this.service.header;
     this.bind = this.service.bind;
-    console.log(this.bind);
-    let height: any = document.getElementsByTagName('body')[0];
-    console.log(height.offsetHeight);
-    this.bodyHeight = height.offsetHeight;
     this.service.iMSBinsSub.subscribe((data: any) => {
       this.bin = data;
-      // console.log(this.modules);
     });
     console.log(this.service.iMSBins);
     this.bin = this.service.iMSBins;
-    this.modules = this.service.iMSModules;
-    console.log(this.modules);
   }
   ngOnInit() {
-    // this.fetchData();
     console.log(this.header);
-    // $(function() {
-    //   $('#datepicker').datepicker();
-    // });
-  
   }
-
-  page(moduleCode: any) {
-    console.log(moduleCode);
-    this.service.SubmodulesSub.next(moduleCode);
-    this.selectedModule = moduleCode;
-    this.accordion = this.submodule.filter((e: any) => e['ModuleCode'] == moduleCode);
-  }
+  // function to print the form fields data in the console when we click on the icon which is in the bottom of the page.
   onClick() {
     console.log(this.bind);
     let each = this.bind;
@@ -1138,6 +1120,7 @@ export class PhysicalcountComponent {
       console.log(Key + ":" + value);
     });
   }
+  // function to print the form fields data in the console when we press the enter key.
   onSubmit(data: NgForm) {
     // console.log("Bin:"+data.target.value);
     console.log(data.value);
@@ -1145,21 +1128,21 @@ export class PhysicalcountComponent {
     Object.entries(each).forEach(([Key, value]) => {
       console.log(Key + ":" + value);
     });
-
   }
+  //  barcode form of physicalcount component(item inquiry).
   back() {
     this.physical = this.service.genericControllerJson;
     this.text1 = "";
-    // this.color="white";
     this.text = "white";
   }
+  // barcode form of physicalcount component.
   Back() {
     this.physical = this.service.genericControllerJson;
     this.text1 = "";
     this.text2 = "";
-    // this.color="white";
     this.text = "white";
   }
+  // itemno form of physicalcount component based on the Name the form fields may vary.
   submit(h: any) {
     this.text = "";
     this.text2 = "";
@@ -1184,6 +1167,7 @@ export class PhysicalcountComponent {
         break;
     }
   }
+  // itemno form of physicalcount component based on the Name the form fields may vary.
   itemno(name: any) {
     this.text = "";
     this.text1 = "white";
@@ -1191,9 +1175,9 @@ export class PhysicalcountComponent {
       case 'Phy. Inv. Count':
         this.physical = { link: true, stock: true, Itemno: true, Unit: true, Description: true, Variant: true, UnitPrice: true, Reason: true, icon: true };
         break;
-        case 'Shelf Price Check':
-          this.physical = { link: true, Nav:true, Itemno: true, Unit: true, date: true, Description: true, Price: true, Variant: true, shelfPrice: true, Reason: true };
-          break;
+      case 'Shelf Price Check':
+        this.physical = { link: true, Nav: true, Itemno: true, Unit: true, date: true, Description: true, Price: true, Variant: true, shelfPrice: true, Reason: true };
+        break;
       case 'Ordr. Dispatch  (Int.)':
         this.physical = { link: true, stock: true, Itemno: true, Unit: true, Description: true, Variant: true, icon: true };
         break;
@@ -1247,6 +1231,7 @@ export class PhysicalcountComponent {
     }
 
   }
+  //  rfid form of physicalcount component .
   rfid() {
     this.text = "";
     this.text1 = "";
@@ -1254,19 +1239,24 @@ export class PhysicalcountComponent {
     this.physical = { link: true, rfid: true };
 
   }
+  // Navigate to the bins component.
   bins() {
     this.router.navigate(['/dashboard/bins']);
     this.service.bsub.next(true);
     this.service.asub.next(false);
+    this.service.arraysub.next(false);
     this.service.genericControllerJsonSubject.next(this.physical = {});
   }
+   // Navigate to the stock component.
   s() {
     this.router.navigate(['/dashboard/stock']);
     this.service.bsub.next(false);
+    this.service.arraysub.next(false);
     this.service.asub.next(false);
     this.service.csub.next(true);
     this.service.genericControllerJsonSubject.next(this.physical = {});
   }
+  // Navigate to the itemno component.
   itemLook() {
     this.router.navigate(['/dashboard/itemno']);
     this.service.bsub.next(false);
@@ -1274,46 +1264,46 @@ export class PhysicalcountComponent {
     this.service.csub.next(true);
     this.service.genericControllerJsonSubject.next(this.physical = {});
   }
+  // Navigate to the stock component.
   ellip() {
     this.router.navigate(['/dashboard/stock']);
     this.service.bsub.next(false);
+    this.service.arraysub.next(false);
     this.service.asub.next(false);
     this.service.csub.next(false);
     this.service.dsub.next(true);
     this.service.genericControllerJsonSubject.next(this.physical = {});
   }
-  description(){
-    this.bgc="";
-    this.bgc1=" rgb(37, 93, 166)";
-    this.enter="Enter a description";
+  description() {
+    this.bgc = "";
+    this.bgc1 = " rgb(37, 93, 166)";
+    this.enter = "Enter a description";
   }
-  barCode(){
-    this.bgc="";
-    this.bgc1="";
-    this.bgc2=" rgb(37, 93, 166)";
-    this.enter="Scan/enter a barcode";
+  barCode() {
+    this.bgc = "";
+    this.bgc1 = "";
+    this.bgc2 = " rgb(37, 93, 166)";
+    this.enter = "Scan/enter a barcode";
   }
-  lookUp(){
-    this.bgc=" rgb(37, 93, 166)";
-    this.bgc1="";
-    this.bgc2="";
-    this.enter="Enter an Item no.";
+  lookUp() {
+    this.bgc = " rgb(37, 93, 166)";
+    this.bgc1 = "";
+    this.bgc2 = "";
+    this.enter = "Enter an Item no.";
   }
+  // function to increase the quantity count.
   increaseValue(): void {
     if (this.quantity < 5.0) {
       this.quantity += 1.0;
     }
   }
+  // function to decrease the quantity count.
   decreaseValue(): void {
     if (this.quantity > 1.0) {
       this.quantity -= 1.0;
     }
   }
-  // goBack(){
-  //   this.location.back();
-  //   this.service.bsub.next(true);
-  //   this.service.asub.next(false);
-  // }
+  // function to make an API call to fetch the data of Bins and subscribe to the retrieved data. 
   fetchData() {
     console.log("Calling fetch data in app component");
     this.loader = true;

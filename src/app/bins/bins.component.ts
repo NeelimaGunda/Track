@@ -10,8 +10,8 @@ import { Location } from '@angular/common';
 export class BinsComponent {
   bodyHeight: any = 0;
   loader: boolean = false;
-  // bin:any=[];
-  bin: any =
+  bin:any=[];
+  bins: any =
     [{
       "Id": 64, "CompanyCode": "APNT",
       "StoreCode": "AJ0105",
@@ -524,17 +524,17 @@ export class BinsComponent {
   show = false;
   searchquery: any = "";
   constructor(private router: Router, private service: MainserviceService, private location: Location) {
-    this.service.iMSBinsSub.next(this.bin);
+    // Getting the height of the body.
     let height: any = document.getElementsByTagName('body')[0];
     console.log(height.offsetHeight);
     this.bodyHeight = height.offsetHeight;
+    this.service.iMSBinsSub.next(this.bin);
     this.service.iMSBinsSub.subscribe((data: any) => {
       this.bin = data;
-      // console.log(this.modules);
     });
     console.log(this.service.iMSBins);
     this.bin = this.service.iMSBins;
-    this.searchquery= this.service.search;
+    this.searchquery = this.service.search;
   }
   ngOnInit() {
     if (this.bin.length == 0)
@@ -543,10 +543,7 @@ export class BinsComponent {
       console.log(this.bin);
 
   }
-  // goBack(){
-  //   this.location.back();
-   
-  // }
+   // function to make an API call to fetch the data of bin and subscribe to the retrieved data. 
   fetchData() {
     console.log("Calling fetch data in app component");
     this.loader = true;

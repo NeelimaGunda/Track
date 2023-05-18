@@ -607,43 +607,29 @@ export class GenericsubmoduleComponent {
       "UpdatedDate": "1900-01-01T00:00:00"
     }
   ];
-  b: boolean = false;
   submodule: any = [];
   module: any = [];
   bodyHeight: any = 0;
-  accordion: any = [];
+  b: boolean = false;
   loader: boolean = false;
   selectedModule: any = "";
   physical: any;
   header: any;
   bind: any;
   search: any;
-  // item: any;
-  // neg: any;
-  // pos: any;
-  // shelf: any;
-  look: any;
   body: any = { arrow: false, menu: false };
   constructor(private service: MainserviceService, private router: Router) {
+     // Getting the height of the body.
     let height: any = document.getElementsByTagName('body')[0];
     console.log(height.offsetHeight);
     this.bodyHeight = height.offsetHeight;
+     // Retrieving submodules data from the local storage.
     let cdata: any = localStorage.getItem('submodules');
     this.submodule = JSON.parse(cdata);
     console.log(this.submodule);
     this.service.iMSSubmodulesSub.subscribe((data: any) => {
       this.submodule = data;
     });
-    // console.log(this.service.iMSSubmodules);
-    // this.submodule = this.service.iMSSubmodules;
-
-  }
-
-  accor(moduleCode: any) {
-    console.log(moduleCode);
-    this.service.SubmodulesSub.next(moduleCode);
-    this.selectedModule = moduleCode;
-    this.accordion = this.submodule.filter((e: any) => e['ModuleCode'] == moduleCode);
   }
   ngOnInit() {
     this.module = this.service.iMSModules;
@@ -661,8 +647,6 @@ export class GenericsubmoduleComponent {
         if (this.submodule[i]['ModuleCode'] == this.service.moduleCode['Code']) {
           console.log(this.submodule[i]['Code']);
           this.menu.push(this.submodule[i]);
-          // console.log(this.menu[i]);
-
         }
       }
     }
@@ -674,241 +658,21 @@ export class GenericsubmoduleComponent {
       console.log("Finished fetching data in app component")
       this.service.iMSSubmodulesSub.next(data);
       this.loader = false;
-      // console.log(this.service.iMSSubmodules);
       for (let i = 0; i < this.submodule.length; i++) {
         if (this.submodule[i]['ModuleCode'] == this.service.moduleCode['Code']) {
           console.log(this.submodule[i]['Code']);
           this.menu.push(this.submodule[i]);
-          // console.log(this.menu);
         }
       }
     }, (err) => {
       console.log(err);
     })
   }
+  // function to display the form fields based on the Code.
+  // here this function calls the sidenav function which is in the service layer.
   page1(a:any){
     this.service.sideNav(a);
     this.service.arraysub.next(true);
     this.router.navigate(['dashboard/physicalcount']);
-  }
-  page(a: any) {
-    this.service.bsub.next(false);
-    this.service.asub.next(true);
-    this.service.bodysub.next(this.body);
-    console.log(this.service.b);
-    console.log(a.Code);
-    switch (a.Code) {
-      // inventory
-      case "PIC":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Bin: "Bluk", Unit: "Each", Description: "Camera", Variant: "34", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { link: true, icon: true, load: true, Nav: true, stock: true, Barcode: true, Unit: true, Description: true, Variant: true, UnitPrice: true, Reason: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        console.log(this.service.genericControllerJson);
-        break;
-      case "IPC":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Barcode: "00012000002", Unit: "Each", Description: "Pc", Price: "1234.13", Measure: "sdf", Retail: "12345" };
-        this.physical = { a: false, Item: true, mat: true, Barcode: true, Unit: false, Description: true, Measure: true, Price: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "IBC":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Bin: "Bluk" };
-        this.physical = { Bins: true, Bin: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "NAD":
-        this.service.headersub.next(a.Name2);
-        this.physical = { adj: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        break;
-      case "PAD":
-        this.service.headersub.next(a.Name2);
-        this.physical = { adj: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        break;
-      case "SPC":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Barcode: "00012000002", Unit: "Each", Description: "Pc", Variant: "", Price: "1234.13", Reason: "" };
-        this.physical = { link: true, shelf: true, Barcode: true, Unit: true, date: true, Description: true, Price: true, Variant: true, shelfPrice: true, Reason: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "ILU":
-        this.service.headersub.next(a.Name2);
-        this.physical = { Look: true, lookup: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        break;
-      // purchase
-      case "LPO":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { link: true, icon: true, Barcode: true, Unit: true, date: true, Description: true, UnitPrice: true, Variant: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "PRN":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { link: true, icon: true, stock: true, Barcode: true, Unit: true, date: true, Description: true, UnitPrice: true, Variant: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "PRO":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { link: true, icon: true, stock: true, Barcode: true, Unit: true, date: true, Description: true, UnitPrice: true, Variant: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "PRS":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { link: true, icon: true, stock: true, Barcode: true, Unit: true, date: true, Description: true, UnitPrice: true, Variant: true, Reason: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "PRR":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { link: true, icon: true, stock: true, Barcode: true, Unit: true, date: true, Description: true, UnitPrice: true, Variant: true, Reason: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-
-      // sales
-      case "SOR":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { link: true, icon: true, stock: true, Barcode: true, Unit: true, date: true, Description: true, UnitPrice: true, Variant: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "SOS":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Unit: "Each", Description: "Camera", Variant: "ed", UnitPrice: "1234.13" };
-        this.physical = { link: true, icon: true, data: true, download: true, com: true, stock: true, Barcode: true, Unit: true, Description: true, Variant: true, UnitPrice: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "SRO":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { link: true, icon: true, stock: true, Barcode: true, Unit: true, date: true, Description: true, UnitPrice: true, Variant: true, Reason: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "SRR":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { link: true, icon: true, stock: true, Barcode: true, Unit: true, date: true, Description: true, UnitPrice: true, Variant: true, Reason: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "SSR":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Unit: "Each", Description: "Camera", Reason: "ed", UnitPrice: "1234.13" };
-        this.physical = { link: true, data: false, tab: true, download: true, icon: true, matorder: true, com: true, stock: true, Barcode: true, Unit: true, Description: true, UnitPrice: true, Reason: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      // service
-      case "SVI":
-        this.service.headersub.next(a.Name2);
-        this.header = a.Name2;
-        console.log(this.service.header);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Unit: "Each", Description: "Camera" };
-        this.physical = { link: true, data: false, tab: true, download: true, icon: true, matorder: true, com: true, stock: true, Barcode: true, Unit: true, Description: true, Variant: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "SVE":
-        this.service.headersub.next(a.Name2);
-        this.physical = { link: true, data: false, tab: true, download: true, icon: true, matorder: true, com: true, stock: true, Barcode: true, Unit: true, Description: true, Variant: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        // this.service.bindsub.next(this.bind);
-        break;
-      case "SVC":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Unit: "Each", Description: "Camera", UnitPrice: "1234.13", Variant: "34" };
-        this.physical = { link: true, data: false, tab: true, download: true, icon: true, matorder: true, com: true, stock: true, Barcode: true, Unit: true, Description: true, UnitPrice: true, Variant: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      // store
-      case "STR":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { link: true, icon: true, Barcode: true, Unit: true, date: true, Description: true, UnitPrice: true, Variant: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "STS":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { link: true, icon: true, stock: true, Barcode: true, Unit: true, date: true, Description: true, UnitPrice: true, Variant: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "STO":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { link: true, icon: true, stock: true, Barcode: true, Unit: true, date: true, Description: true, UnitPrice: true, Variant: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "ICS":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { link: true, icon: true, stock: true, Barcode: true, Unit: true, date: true, Description: true, UnitPrice: true, Variant: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "STI":
-        this.service.headersub.next(a.Name2);
-        this.physical = { order: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        break;
-      // warehouse
-      case "WHM":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { data: true, download: true, Item: true, menu: true, Location: true, Barcode: true, place: true, Unit: true, Description: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "WPL":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { data: true, download: true, Item: true, menu: true, Location: true, Barcode: true, Unit: true, Description: true, Variant: true, UnitPrice: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "WPA":
-        this.service.headersub.next(a.Name2);
-        this.bind = { Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { data: true, download: true, Item: true, menu: true, Location: true, Barcode: true, Unit: true, Description: true, Variant: true, UnitPrice: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-      case "WHR":
-        this.service.headersub.next(a.Name2);
-        this.bind = { date: "", Stock: "Bluk", Barcode: "00012000002", Place: "Bluk", Unit: "Each", Description: "Pc", Variant: "dfg", UnitPrice: "1234.13", Price: "1234.13", Reason: "sdf" };
-        this.physical = { data: true, download: true, Item: true, menu: true, Barcode: true, date: true, Unit: true, Description: true, Variant: true, UnitPrice: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        this.service.bindsub.next(this.bind);
-        break;
-
-      default:
-        this.service.headersub.next(a.Name2);
-        this.physical = { order: true };
-        this.service.genericControllerJsonSubject.next(this.physical);
-        break;
-    }
-    this.router.navigate(['dashboard/physicalcount']);
-  }
+  } 
 }

@@ -38,6 +38,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { ModulepipePipe } from './modulepipe.pipe';
+import { ModuleComponent } from './module/module.component';
 
 
 @NgModule({
@@ -65,7 +66,7 @@ import { ModulepipePipe } from './modulepipe.pipe';
     BodyComponent,
     BinPipe,
     ModulepipePipe,
-
+    ModuleComponent
 
 
   ],

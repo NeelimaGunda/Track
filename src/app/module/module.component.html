@@ -1,0 +1,116 @@
+<div class="container hx-100 d-block d-sm-none"[style.height.px]="bodyHeight">
+    <nav class="navbar fixed-bottom p-0 ">
+        <div class="container-fluid justify-content-end">
+            <div class="row hx-60 text-end  ">
+                <a class="navbar-brand" href="#">
+                    <span class="fa-stack fs-2 ">
+                        <i class="fa-solid fa-circle fa-stack-2x blue "></i>
+                        <i class="fa-solid fa-square-poll-vertical fa-stack-1x fs-4 white"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="row hx-100 align-items-center">
+        <div class="col col-12 ">
+            <div class="row hx-40  bg-white ">
+                <div class="col col-1 text-center "><i class="fa-solid fa-bars "></i></div>
+                <div class="col col-9 text-center "> <b class="">Modules</b></div>
+                <div class="col col-1 text-center " [routerLink]="['/dashboard']"><i class="fa-solid fa-table-cells"></i>
+                </div>
+                <div class="col col-1 text-center"><i class="fa-solid fa-ellipsis-vertical "></i></div>
+            </div>
+            <div class="row  hx-40 align-items-center bg-blue">
+                <div class="col col-12 white fs-5"><b>Welcome Manager</b></div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2 overflow-auto"[style.height.px]="bodyHeight-100">
+        <div class="col col-12">
+            <div class="row hx-70  align-items-center text-center  mb-2  "[routerLink]="['/inventory']">
+                <div class="col col-3 hx-60  align-self-center text-center ">
+                    <div class="container align-self-center">
+                        <img src="../../assets/inventory.png"   height="50px" style="width:50px" >
+                    </div>
+                </div>
+                <div class="col col-9 hx-60 text-start">
+                    <div class="container">
+                    <p><b>Inventory </b><br> Inventory</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row hx-70  align-items-center text-center  mb-2 "[routerLink]="['/label']">
+                <div class="col col-3 hx-60 align-self-center text-center ">
+                    <div class="container align-self-center">
+                        <img src="../../assets/label printer.png"   height="50px" style="width:50px" >
+                    </div>
+                </div>
+                <div class="col col-9 hx-60 text-start">
+                    <div class="container">
+                    <p><b>Label Printing </b><br> Label Printing</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row hx-70  align-items-center text-center justify-content-center mb-2 "[routerLink]="['/purchase']">
+                <div class="col col-3 hx-60  align-self-center text-center ">
+                    <div class="container align-self-center">
+                        <img src="../../assets/purchase.png"   height="50px" style="width:50px" >
+                    </div>
+                </div>
+                <div class="col col-9 hx-60 text-start">
+                    <div class="container">
+                    <p><b>Purchase </b><br> Purchase</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row hx-70  align-items-center text-center  mb-2  "[routerLink]="['/sale']">
+                <div class="col col-3 hx-60  align-self-center  ">
+                    <div class="container ">
+                        <img src="../../assets/sale.png"   height="50px" style="width:50px" >
+                    </div>
+                </div>
+                <div class="col col-9 hx-60 text-start">
+                    <div class="container">
+                    <p><b>Sale </b><br> Sale</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row hx-70  align-items-center text-center justify-content-center mb-2 "[routerLink]="['/store']">
+                <div class="col col-3 hx-60  align-self-center text-center ">
+                    <div class="container align-self-center">
+                        <img src="../../assets/store.png"   height="50px" style="width:50px" >
+                    </div>
+                </div>
+                <div class="col col-9 hx-60 text-start">
+                    <div class="container">
+                    <p><b>Store </b><br> Store</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row hx-70  align-items-center text-center justify-content-center mb-2 "[routerLink]="['/service']">
+                <div class="col col-3 hx-60  align-self-center text-center ">
+                    <div class="container align-self-center">
+                        <img src="../../assets/service.png"   height="50px" style="width:50px" >
+                    </div>
+                </div>
+                <div class="col col-9 hx-60 text-start">
+                    <div class="container">
+                    <p><b>Service </b><br> Service</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row hx-70  align-items-center text-center justify-content-center mb-2 "[routerLink]="['/warehouse']">
+                <div class="col col-3 hx-60  align-self-center text-center ">
+                    <div class="container align-self-center">
+                        <img src="../../assets/warehouse.png"   height="50px" style="width:50px" >
+                    </div>
+                </div>
+                <div class="col col-9 hx-60 text-start">
+                    <div class="container">
+                    <p><b>Warehouse </b><br> Warehouse</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
