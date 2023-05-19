@@ -1,4 +1,4 @@
-<div class="container-fluid hx-100 d-block d-sm-none" [style.height.px]="bodyHeight">
+<div class="container-fluid hx-100 p-0 d-block d-sm-none" [style.height.px]="bodyHeight">
     <!-- <div class="row hx-45 bg-blue align-items-center text-center ">
         <div class="col col-2 ">
             <i class="fa-solid fa-arrow-left white"(click)="goBack()"></i>
@@ -6,9 +6,9 @@
         <div class="col col-8 text-start white"><b>Bin</b></div>
         <div class="col col-2 text-start"><i class="fa-solid fa-bars-staggered white" (click)="show = !show"></i>
         </div>
-    </div>
+    </div> -->
     <div class="row hx-50  mt-1">
-        <div class="input-group "*ngIf="show">
+        <div class="input-group">
             <input class="form-control border-end-0 border" type="text" placeholder="search" [(ngModel)]="search"> 
             <span class="input-group-append ">
                 <button class="btn btn-outline-secondary border-start-0  border ms-n5" type="button">
@@ -16,10 +16,10 @@
                 </button>
             </span>
         </div>
-    </div> -->
+    </div> 
     <div class="row overflow-auto " [style.height.px]="bodyHeight-45">
         <div class="col col-12">
-            <div class="row hx-30 mb-2 align-items-center" *ngFor="let list of bin|submodulefilter:searchquery;">
+            <div class="row hx-30 mb-2 align-items-center" *ngFor="let list of bin|submodulefilter:search;">
                 <div class="col col-12">
                     <div class="container border rounded h-100 bg-green">
                         <div class="row align-items-center ">

@@ -39,6 +39,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { ModulepipePipe } from './modulepipe.pipe';
 import { ModuleComponent } from './module/module.component';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { ModuleComponent } from './module/module.component';
     MatTabsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    MatBottomSheetModule
   ],
   providers: [],
   bootstrap: [AppComponent]

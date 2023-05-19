@@ -292,9 +292,6 @@ export class BodyComponent {
       // console.log(this.companies[1]);
       this.fetchData();
       this.router.navigate(['']);
-     
-
-
     }
     else
       this.loader = false;

@@ -3,7 +3,8 @@ import { MainserviceService } from '../mainservice.service';
 import { NgForm } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-
+import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { BinsComponent } from '../bins/bins.component';
 @Component({
   selector: 'app-physicalcount',
   templateUrl: './physicalcount.component.html',
@@ -1094,7 +1095,7 @@ export class PhysicalcountComponent {
   bgc1: any;
   bgc2: any;
   enter: any = "Enter an Item no.";
-  constructor(private service: MainserviceService, private location: Location, private router: Router) {
+  constructor(private service: MainserviceService, private location: Location, private router: Router,private _bottomSheet: MatBottomSheet) {
     // Getting the height of the body.
     let height: any = document.getElementsByTagName('body')[0];
     console.log(height.offsetHeight);
@@ -1120,8 +1121,7 @@ export class PhysicalcountComponent {
       console.log(Key + ":" + value);
     });
   }
-  // function to print the form fields data in the console when we press the enter key.
-  onSubmit(data: NgForm) {
+  onSubmit(data: NgForm) {       // function to print the form fields data in the console when we press the enter key.
     // console.log("Bin:"+data.target.value);
     console.log(data.value);
     let each = data.value;
@@ -1241,11 +1241,12 @@ export class PhysicalcountComponent {
   }
   // Navigate to the bins component.
   bins() {
-    this.router.navigate(['/dashboard/bins']);
-    this.service.bsub.next(true);
-    this.service.asub.next(false);
-    this.service.arraysub.next(false);
-    this.service.genericControllerJsonSubject.next(this.physical = {});
+    // this.router.navigate(['/dashboard/bins']);
+    this._bottomSheet.open(BinsComponent);
+    // this.service.bsub.next(true);
+    // this.service.asub.next(false);
+    // this.service.arraysub.next(false);
+    // this.service.genericControllerJsonSubject.next(this.physical = {});
   }
    // Navigate to the stock component.
   s() {

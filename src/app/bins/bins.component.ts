@@ -10,8 +10,8 @@ import { Location } from '@angular/common';
 export class BinsComponent {
   bodyHeight: any = 0;
   loader: boolean = false;
-  bin:any=[];
-  bins: any =
+  // bin:any=[];
+  bin: any =
     [{
       "Id": 64, "CompanyCode": "APNT",
       "StoreCode": "AJ0105",
@@ -522,7 +522,7 @@ export class BinsComponent {
     }
     ];
   show = false;
-  searchquery: any = "";
+  search: any = "";
   constructor(private router: Router, private service: MainserviceService, private location: Location) {
     // Getting the height of the body.
     let height: any = document.getElementsByTagName('body')[0];
@@ -534,7 +534,7 @@ export class BinsComponent {
     });
     console.log(this.service.iMSBins);
     this.bin = this.service.iMSBins;
-    this.searchquery = this.service.search;
+    this.search = this.service.search;
   }
   ngOnInit() {
     if (this.bin.length == 0)
