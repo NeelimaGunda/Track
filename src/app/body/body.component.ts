@@ -290,8 +290,9 @@ export class BodyComponent {
     console.log(this.modules);
     if (this.modules == null || this.modules.length == 0) { // && this.stores!=null
       // console.log(this.companies[1]);
-      this.router.navigate(['']);
       this.fetchData();
+      this.router.navigate(['']);
+     
 
 
     }

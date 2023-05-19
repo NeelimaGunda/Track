@@ -11,12 +11,13 @@ export class ModulepipePipe implements PipeTransform {
       console.log(value);
       return value;
     }
-    let e = [];
-    for (let list of value) {
-      if (list.Code.toLowerCase() == search) {
-        e.push(list);
-      }
+  else{
+      // return value.filter(item => item.name.toLowerCase().includes(this.searchTerm.toLowerCase()));
+      return value.filter((e: any) => {
+        return (e['Code'].toLowerCase().includes(search.toLowerCase())) ||
+        (e['Name'].toLowerCase().includes(search.toLowerCase()));
+      });
     }
-    return e;
-  }
+     
 }
+  }

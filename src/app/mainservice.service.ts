@@ -215,6 +215,7 @@ export class MainserviceService {
   //      });
   // }
   sideNav(a: any) {
+    console.log(a);
     this.bsub.next(false);
     this.asub.next(true);
     this.bodysub.next(this.body = { arrow: false, menu: false })

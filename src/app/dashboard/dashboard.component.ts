@@ -355,7 +355,7 @@ export class DashboardComponent {
       console.log(this.physical);
     })
     console.log(this.modules);
-    if (this.modules.length == 0) {
+    if (this.modules.length != 0) {
       this.fetchData();
     }
     else {
