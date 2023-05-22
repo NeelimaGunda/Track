@@ -1317,4 +1317,5 @@ export class PhysicalcountComponent {
 
     })
   }
+  
 }

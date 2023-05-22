@@ -44,12 +44,24 @@
   <mat-drawer #drawer1 class="example-sidenav" mode="over" position='end' style="width:380px;">
     <div class="row hx-45 bg-blue align-items-center text-center">
       <div class="col col-2 ">
-        <i class="fa-solid fa-bars white"></i>
+        <i class="fa-solid fa-bars white"  (click)="drawer.toggle()"></i>
       </div>
       <div class="col col-1"><i class="fa-solid fa-arrow-left white" (click)="drawer1.toggle()"></i></div>
       <div class="col col-9 text-start"><b class="white">Status Report</b></div>
     </div>
-
+    <div class="container fixed-bottom">
+      <div class="row">
+        <div class="col col-1 mx-2" *ngFor="let list of menus;let i = index;">
+          <label>
+            <input type="radio" id="likes" name="tab-group-1">
+            <span class="button">
+              <span><img class="img" [src]="list['ImageURLAddress']" height="30px" style="width:30px"></span>
+              <span class="button-text  fs-7"><b>{{list['Code']}}</b></span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
   </mat-drawer>
   <!-- ---------------------------------------------- -->
   <div class="container-fluid p-0 hx-100 d-block d-sm-none " [style.height.px]="bodyHeight">

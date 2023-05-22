@@ -62,8 +62,8 @@ export class TerminalsetupComponent {
     console.log(this.service.company);
     this.service.storesub.next(this.tstore);
     console.log(this.service.store);
-    // If companies length is not equal to zero then it navigates to the login page otherwise it calls the fetchdata() function .
-    if(this.companies.length != 0 ){
+    // If companies and stores length  is not equal to zero then it navigates to the login page otherwise it calls the fetchdata() function .
+    if(this.companies.length != 0 && this.stores.length !=0 ){
       console.log(this.companies[1]);
       this.router.navigate(['/login']);
     }
@@ -84,10 +84,9 @@ export class TerminalsetupComponent {
     this.service.terminalnamesub.next(this.tname);
     console.log(this.service.terminalname);
   }
-
-  getCompanies(list: any) {
-    console.log(list);
-    this.fetchData1(list.target.value);
+ getCompanies(list: any) {
+    console.log(list.value);
+    this.fetchData1(list.value);
   }
   // function to make an API call to fetch the data of stores and subscribe to the retrieved data. 
   fetchData1(list: any) {

@@ -383,8 +383,22 @@ export class DashboardComponent {
       console.log("Finished fetching data in app component")
       this.service.iMSSubmodulesSub.next(data);
       this.loader = false;
+      this.fetchData1();
     }, (err) => {
       console.log(err);
     })
+  }
+  fetchData1() {
+    console.log("Calling fetch data in app component");
+    this.loader = true;
+    this.service.fetchImsBins().subscribe((data: any) => {
+      console.log("Finished fetching data in app component")
+      this.service.iMSBinsSub.next(data);
+      this.loader = false;
+    }, (err) => {
+      console.log(err);
+
+    })
+
   }
 }
