@@ -22,7 +22,7 @@
             <div class="row hx-30 mb-2 align-items-center" *ngFor="let list of bin|submodulefilter:search;">
                 <div class="col col-12">
                     <div class="container border rounded h-100 bg-green">
-                        <div class="row align-items-center ">
+                        <div class="row align-items-center"(click)="selectedCode(list.No)">
                             <div class="col col-5 align-self-center">{{list['ZoneCode']}}</div>
                             <div class="col col-7 text-center">{{list['No']}}({{list['No']}})</div>
                         </div>

@@ -3,7 +3,7 @@ import { MainserviceService } from '../mainservice.service';
 import { NgForm } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { BinsComponent } from '../bins/bins.component';
 @Component({
   selector: 'app-physicalcount',
@@ -21,6 +21,62 @@ export class PhysicalcountComponent {
       "Description2": "51178-EXCELLENCE HOT SAUCE3 OZ",
       "No": "W-11-0001",
       "Name": "W-11-0001",
+      "ImageURLAddress": "http://93.177.125.95/aptintrack/Images/ic_inventory.png",
+      "Name2": "PC",
+      "Qty": "40.0/4.0/36.0",
+      "Ranking": 0,
+      "Cubage": 0.0000000000,
+      "Weight": 0.0000000000,
+      "ReceiveBin": true,
+      "ShipBin": true,
+      "PutAwayBin": true,
+      "PickBin": true,
+      "CrossDockBin": false,
+      "MovementPermitted": false,
+      "ItemCategoryCode": "",
+      "Status": 0,
+      "CreatedBy": "",
+      "CreatedDate": "2023-04-26T16:29:01.855358+04:00",
+      "UpdatedBy": "",
+      "UpdatedDate": "2023-04-26T16:29:01.855358+04:00"
+    },
+    {
+      "Id": 64, "CompanyCode": "APNT",
+      "StoreCode": "AJ0105",
+      "ZoneCode": "ADJUSTMENT",
+      "Code": "V-11-0001",
+      "Description": "",
+      "Description2": "51178-EXCELLENCE HOT SAUCE3 OZ",
+      "No": "V-11-0001",
+      "Name": "V-11-0001",
+      "ImageURLAddress": "http://93.177.125.95/aptintrack/Images/ic_inventory.png",
+      "Name2": "PC",
+      "Qty": "40.0/4.0/36.0",
+      "Ranking": 0,
+      "Cubage": 0.0000000000,
+      "Weight": 0.0000000000,
+      "ReceiveBin": true,
+      "ShipBin": true,
+      "PutAwayBin": true,
+      "PickBin": true,
+      "CrossDockBin": false,
+      "MovementPermitted": false,
+      "ItemCategoryCode": "",
+      "Status": 0,
+      "CreatedBy": "",
+      "CreatedDate": "2023-04-26T16:29:01.855358+04:00",
+      "UpdatedBy": "",
+      "UpdatedDate": "2023-04-26T16:29:01.855358+04:00"
+    },
+    {
+      "Id": 64, "CompanyCode": "APNT",
+      "StoreCode": "AJ0105",
+      "ZoneCode": "ADJUSTMENT",
+      "Code": "V-11-0002",
+      "Description": "",
+      "Description2": "51178-EXCELLENCE HOT SAUCE3 OZ",
+      "No": "V-11-0002",
+      "Name": "V-11-0002",
       "ImageURLAddress": "http://93.177.125.95/aptintrack/Images/ic_inventory.png",
       "Name2": "PC",
       "Qty": "40.0/4.0/36.0",
@@ -69,6 +125,34 @@ export class PhysicalcountComponent {
       "UpdatedBy": "", "UpdatedDate": "2023-04-26T16:29:01.855358+04:00"
     },
     {
+      "Id": 64, "CompanyCode": "APNT",
+      "StoreCode": "AJ0105",
+      "ZoneCode": "ADJUSTMENT",
+      "Code": "V-05-0001",
+      "Description": "",
+      "Description2": "51178-EXCELLENCE HOT SAUCE3 OZ",
+      "No":"V-05-0001",
+      "Name": "V-05-0001",
+      "ImageURLAddress": "http://93.177.125.95/aptintrack/Images/ic_inventory.png",
+      "Name2": "PC",
+      "Qty": "40.0/4.0/36.0",
+      "Ranking": 0,
+      "Cubage": 0.0000000000,
+      "Weight": 0.0000000000,
+      "ReceiveBin": true,
+      "ShipBin": true,
+      "PutAwayBin": true,
+      "PickBin": true,
+      "CrossDockBin": false,
+      "MovementPermitted": false,
+      "ItemCategoryCode": "",
+      "Status": 0,
+      "CreatedBy": "",
+      "CreatedDate": "2023-04-26T16:29:01.855358+04:00",
+      "UpdatedBy": "",
+      "UpdatedDate": "2023-04-26T16:29:01.855358+04:00"
+    },
+    {
       "Id": 25,
       "CompanyCode": "APNT",
       "StoreCode": "AJ0105",
@@ -98,6 +182,34 @@ export class PhysicalcountComponent {
       "UpdatedDate": "2023-04-26T16:29:01.855358+04:00"
     },
     {
+      "Id": 64, "CompanyCode": "APNT",
+      "StoreCode": "AJ0105",
+      "ZoneCode": "ADJUSTMENT",
+      "Code": "V-05-0002",
+      "Description": "",
+      "Description2": "51178-EXCELLENCE HOT SAUCE3 OZ",
+      "No": "V-05-0002",
+      "Name": "V-05-0002",
+      "ImageURLAddress": "http://93.177.125.95/aptintrack/Images/ic_inventory.png",
+      "Name2": "PC",
+      "Qty": "40.0/4.0/36.0",
+      "Ranking": 0,
+      "Cubage": 0.0000000000,
+      "Weight": 0.0000000000,
+      "ReceiveBin": true,
+      "ShipBin": true,
+      "PutAwayBin": true,
+      "PickBin": true,
+      "CrossDockBin": false,
+      "MovementPermitted": false,
+      "ItemCategoryCode": "",
+      "Status": 0,
+      "CreatedBy": "",
+      "CreatedDate": "2023-04-26T16:29:01.855358+04:00",
+      "UpdatedBy": "",
+      "UpdatedDate": "2023-04-26T16:29:01.855358+04:00"
+    },
+    {
       "Id": 26,
       "CompanyCode": "APNT",
       "StoreCode": "AJ0105",
@@ -111,6 +223,34 @@ export class PhysicalcountComponent {
       "Name2": "PC",
       "Qty": "40.0/4.0/36.0",
       "Ranking": 60,
+      "Cubage": 0.0000000000,
+      "Weight": 0.0000000000,
+      "ReceiveBin": true,
+      "ShipBin": true,
+      "PutAwayBin": true,
+      "PickBin": true,
+      "CrossDockBin": false,
+      "MovementPermitted": false,
+      "ItemCategoryCode": "",
+      "Status": 0,
+      "CreatedBy": "",
+      "CreatedDate": "2023-04-26T16:29:01.855358+04:00",
+      "UpdatedBy": "",
+      "UpdatedDate": "2023-04-26T16:29:01.855358+04:00"
+    },
+    {
+      "Id": 64, "CompanyCode": "APNT",
+      "StoreCode": "AJ0105",
+      "ZoneCode": "ADJUSTMENT",
+      "Code": "v-05-0003",
+      "Description": "",
+      "Description2": "51178-EXCELLENCE HOT SAUCE3 OZ",
+      "No": "v-05-0003",
+      "Name": "v-05-0003",
+      "ImageURLAddress": "http://93.177.125.95/aptintrack/Images/ic_inventory.png",
+      "Name2": "PC",
+      "Qty": "40.0/4.0/36.0",
+      "Ranking": 0,
       "Cubage": 0.0000000000,
       "Weight": 0.0000000000,
       "ReceiveBin": true,
@@ -1095,13 +1235,15 @@ export class PhysicalcountComponent {
   bgc1: any;
   bgc2: any;
   enter: any = "Enter an Item no.";
-  constructor(private service: MainserviceService, private location: Location, private router: Router,private _bottomSheet: MatBottomSheet) {
+  constructor(private service: MainserviceService, private location: Location, private router: Router, private _bottomSheet: MatBottomSheet) {
     // Getting the height of the body.
     let height: any = document.getElementsByTagName('body')[0];
     console.log(height.offsetHeight);
     this.bodyHeight = height.offsetHeight;
     console.log(this.service.genericControllerJson)
     this.physical = this.service.genericControllerJson;
+    this.find = this.service.search;
+    console.log(this.find);
     this.header = this.service.header;
     this.bind = this.service.bind;
     this.service.iMSBinsSub.subscribe((data: any) => {
@@ -1112,6 +1254,9 @@ export class PhysicalcountComponent {
   }
   ngOnInit() {
     console.log(this.header);
+     this.service.searchsub.subscribe((data: any) => {
+      this.find = data;
+    })
   }
   // function to print the form fields data in the console when we click on the icon which is in the bottom of the page.
   onClick() {
@@ -1248,7 +1393,7 @@ export class PhysicalcountComponent {
     // this.service.arraysub.next(false);
     // this.service.genericControllerJsonSubject.next(this.physical = {});
   }
-   // Navigate to the stock component.
+  // Navigate to the stock component.
   s() {
     this.router.navigate(['/dashboard/stock']);
     this.service.bsub.next(false);
@@ -1317,5 +1462,5 @@ export class PhysicalcountComponent {
 
     })
   }
-  
+
 }

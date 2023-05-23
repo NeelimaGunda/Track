@@ -7,3 +7,7 @@
    .hx-45{
     height: 45px;
 }
+.overflow{
+    overflow-y: auto;
+    overflow-x: hidden;
+}

@@ -41,7 +41,7 @@ import { ModulepipePipe } from './modulepipe.pipe';
 import { ModuleComponent } from './module/module.component';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatSelectModule} from '@angular/material/select';
-
+// import { MatCarouselModule } from '@ngmodule/material-carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +89,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatNativeDateModule,
     MatInputModule,
     MatBottomSheetModule,
-    MatSelectModule
+    MatSelectModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

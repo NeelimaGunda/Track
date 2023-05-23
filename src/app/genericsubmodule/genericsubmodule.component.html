@@ -24,7 +24,7 @@
             </div>
         </div>
     </mat-drawer> -->
-    <div class="container-fluid p-0 hx-100 d-block d-sm-none overflow-auto" [style.height.px]="bodyHeight-45">
+    <div class="container-fluid p-0 hx-100 d-block d-sm-none overflow" [style.height.px]="bodyHeight-45">
         <!-- <div class="row hx-45 bg-blue align-items-center text-center ">
             <div class="col col-2 ">
                 <i class="fa-solid fa-bars white" (click)="drawer.toggle()"></i>
@@ -32,7 +32,7 @@
             <div class="col col-1" [routerLink]="['/dashboard']"><i class="fa-solid fa-arrow-left white"></i></div>
             <div class="col col-9 text-start"><b class="white">{{type['Name']}}</b></div>
         </div> -->
-        <div class="row bg-grey overflow-auto " [style.height.px]="bodyHeight-45">
+        <div class="row bg-grey overflow " [style.height.px]="bodyHeight-45">
             <div class="col col-12 mt-2">
                 <i class="fa-solid fa-spin fa-spinner align-self-center text-center fs-1" *ngIf="loader"></i>
                 <div class="row hx-50  align-items-center">

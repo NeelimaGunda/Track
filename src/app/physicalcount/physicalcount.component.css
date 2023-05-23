@@ -47,3 +47,7 @@
 .p-0{
     padding: 0px;
 }
+.overflow{
+    overflow-y: auto;
+    overflow-x: hidden;
+}

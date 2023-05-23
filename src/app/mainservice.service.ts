@@ -111,6 +111,7 @@ export class MainserviceService {
     });
     this.searchsub.subscribe((data: any) => {
       this.search = data;
+      console.log(this.search);
     });
     this.bindsub.subscribe((data: any) => {
       this.bind = data;
@@ -436,23 +437,23 @@ export class MainserviceService {
   }
   // function to  make an API call to retrive the companies data
   fetchImsCompanies() {
-    return this.http.get(this.preurl + this.endPoint['getimscompanies']);
+    return this.http.get(this.turl + this.endPoint['getimscompanies']);
   }
   // function to  make an API call to retrive the stores data
   fetchImsStores(code: any) {
-    return this.http.get(this.preurl + this.endPoint['getimsstores'] + '/' + code);
+    return this.http.get(this.turl + this.endPoint['getimsstores'] + '/' + code);
   }
   // function to  make an API call to retrive the modules data
   fetchImsModules() {
-    return this.http.get(this.preurl + this.endPoint['getimsmodules'] + '/' + "?companyStoreFilter.companyCode=" + this.company + "&companyStoreFilter.storeCode=" + this.store);
+    return this.http.get(this.turl + this.endPoint['getimsmodules'] + '/' + "?companyStoreFilter.companyCode=" + this.company + "&companyStoreFilter.storeCode=" + this.store);
   }
   // function to  make an API call to retrive the submodules data
   fetchImsSubmodules() {
-    return this.http.get(this.preurl + this.endPoint['getimssubmodules'] + '/' + "?companyStoreFilter.companyCode=" + this.company + "&companyStoreFilter.storeCode=" + this.store);
+    return this.http.get(this.turl + this.endPoint['getimssubmodules'] + '/' + "?companyStoreFilter.companyCode=" + this.company + "&companyStoreFilter.storeCode=" + this.store);
   }
   // function to  make an API call to retrive the bins data
   fetchImsBins() {
-    return this.http.get(this.preurl + this.endPoint['getimsbins'] + '/' + "?companyStoreFilter.companyCode=" + this.company + "&companyStoreFilter.storeCode=" + this.store);
+    return this.http.get(this.turl + this.endPoint['getimsbins'] + '/' + "?companyStoreFilter.companyCode=" + this.company + "&companyStoreFilter.storeCode=" + this.store);
   }
 
 }

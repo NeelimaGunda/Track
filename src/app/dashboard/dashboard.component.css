@@ -63,3 +63,13 @@ input:checked ~ .button .button-text{
 input:checked ~ .button .img{
   transform: translateY(-9px);
 }
+.black{
+  color: black;
+}
+.mr-4{
+  margin-right: 20px;
+}
+.overflow{
+  overflow-y: auto;
+  overflow-x: hidden;
+}

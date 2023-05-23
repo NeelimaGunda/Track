@@ -286,7 +286,6 @@ export class BodyComponent {
   //   this.accordion = this.submodule.filter((e: any) => e['ModuleCode'] == moduleCode);
   // }
   ngOnInit() {
-    console.log("hiuh");
     console.log(this.modules);
     if (this.modules == null || this.modules.length == 0) { // && this.stores!=null
       // console.log(this.companies[1]);

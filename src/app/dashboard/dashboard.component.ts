@@ -216,6 +216,7 @@ export class DashboardComponent {
   loader: boolean = false;
   show = false;
   sidearrow = false;
+  pagination = false;
   search: any = "";
   header: any = "";
   selectedModule: any = "";
@@ -316,6 +317,9 @@ export class DashboardComponent {
     this.service.asub.next(false);
     this.service.genericControllerJsonSubject.next(this.physical = {});
 
+  }
+  pagination1(){
+    this.pagination=true;
   }
   ngOnInit() {
     this.service.searchsub.next(this.search);

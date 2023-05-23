@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container overflow-auto" [style.height.px]="bodyHeight-45">
+<mat-drawer-container class="example-container " [style.height.px]="bodyHeight-45">
     <mat-drawer #drawer1 class="example-sidenav" mode="over" position='start' style="width:390px;">
         <div class="container-fluid hx-100 d-block d-sm-none" [style.height.px]="bodyHeight">
             <div class="row hx-45 align-items-center text-center ">
@@ -100,7 +100,7 @@
         </div>
     </mat-drawer> -->
     <!-- ------------------------------- -->
-    <div class="container-fluid p-0  hx-100 d-block d-sm-none" [style.height.px]="bodyHeight">
+    <div class="container-fluid p-0 overflow hx-100 d-block d-sm-none" [style.height.px]="bodyHeight">
         <nav class="navbar fixed-bottom p-0" *ngIf="physical.icon">
             <div class="container-fluid justify-content-end">
                 <div class="row hx-50 text-end">
@@ -281,7 +281,7 @@
             <div class="col col-2 align-self-center"><i class="fa-solid fa-ellipsis grey fs-5"></i></div>
         </div>
         <!-- ----------------------------------------------- -->
-        <div class="row overflow-hidden" [style.height.px]="bodyHeight-50-70">
+        <div class="row overflow" [style.height.px]="bodyHeight-50-70">
             <div class="col col-12">
                 <div class="container">
                     <form #form="ngForm" (ngSubmit)="onSubmit(form)">

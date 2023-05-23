@@ -52,3 +52,7 @@
 .hx-80{
     height:80px;
 }
+.overflow{
+    overflow-y: auto;
+    overflow-x: hidden;
+}

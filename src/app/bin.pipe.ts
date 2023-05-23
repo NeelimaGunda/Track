@@ -12,7 +12,7 @@ export class BinPipe implements PipeTransform {
     }
     let e = [];
     for (let bin of value) {
-      if (bin.No.toLowerCase() == find) {
+      if (bin.No == find) {
         e.push(bin);
       }
     }
