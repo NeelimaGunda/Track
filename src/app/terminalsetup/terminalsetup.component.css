@@ -55,4 +55,11 @@
   .mt-0{
     margin-top: 0%;
   }
+  .is-invalid {
+    border-color: red;
+  }
+  .fs-6{
+    font-size:5px;
+  }
+  
  

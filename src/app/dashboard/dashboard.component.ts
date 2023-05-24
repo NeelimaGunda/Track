@@ -347,9 +347,6 @@ export class DashboardComponent {
     this.service.arraysub.subscribe((data: any) => {
       this.array = data;
     })
-    // this.service.searchsub.subscribe((data: any) => {
-    //   this.search = data;
-    // })
     this.service.headersub.subscribe((data: any) => {
       this.header = data;
       console.log(this.header);

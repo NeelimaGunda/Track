@@ -1,17 +1,17 @@
 <div class="container-fluid hx-100  d-block d-sm-none" [style.height.px]="bodyHeight">
-  <nav class="navbar fixed-bottom  ">
-    <div class="container-fluid justify-content-end">
+  <!-- <nav class="navbar fixed-bottom  ">
+    <div class="container-fluid justify-content-end fixed-bottom">
       <div class="row hx-50 text-end ">
-        <!-- <button  type="submit" > -->
+        <button  type="submit" >
         <span class="fa-stack fs-2 " (click)="onclick()">
           <i class="fa-solid fa-circle fa-stack-2x blue "></i>
           <i class="fa-solid fa-floppy-disk fa-stack-1x fs-5 white"></i>
         </span>
-        <!-- </button> -->
+        </button>
       </div>
     </div>
-  </nav>
-  <div class="row hx-50 border bg-blue ">
+  </nav> -->
+  <div class="row hx-50 border bg-blue">
     <div class="col col-2  align-self-center  ">
       <i class="fa-solid fa-arrow-left pe-2 white" [routerLink]="['/login']"></i>
     </div>
@@ -19,19 +19,89 @@
       <b class="white">Terminal Setup</b>
     </div>
   </div>
-  <div class=" row overflow-auto " [style.height.px]="bodyHeight-50-50">
+  <div class=" row overflow-auto " [style.height.px]="bodyHeight-50-60">
     <div class="col col-12">
-      <form #form="ngForm" (ngSubmit)="onSubmit(formData)">
-        <div class="row hx-90 ">
+      <form [formGroup]="setupForm" (ngSubmit)="Submit(setupForm)" novalidate>
+        <div class="row ">
           <div class="col col-12 align-self-center ">
             <label for="url" class="form-label"><b>URL</b></label>
           </div>
           <mat-form-field>
-            <input type="url" class="form-control" name="url" matInput [(ngModel)]="formData.url">
+            <input type="url" class="form-control" name="url"placeholder="Enter URL" matInput formControlName="url" (keyup.enter)="onUrlSubmit()">
+            <div *ngIf="setupForm.get('url')?.invalid && setupForm.get('url')?.touched || urlError " class="error-message"style="color: red;">URL not found</div>
           </mat-form-field>
         </div>
+        <div class="row hx-90">
+          <div class="col col-12 align-self-center">
+            <label for="company" class="form-label"><b>Company</b></label>
+          </div>
+          <mat-form-field class="small-mat-form-field">
+            <mat-select (selectionChange)="getCompanies($event)" placeholder="Select a Company"
+              formControlName="company">
+              <mat-option *ngFor="let list of companies" [value]="list['Code']">
+                {{list['Name']}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="row hx-90">
+          <div class="col col-12 align-self-center">
+            <label for="store" class="form-label"><b>Store</b>
+              <i class="fa-solid fa-spin fa-spinner align-self-center p-2 fs-7" *ngIf="loader"></i>
+            </label>
+          </div>
+          <mat-form-field>
+            <mat-label> Select a Store</mat-label>
+            <mat-select formControlName="store" >
+              <mat-option *ngFor="let company of stores" [value]="company['Code']">{{company['Name']}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <div class="col col-12 align-self-center">
+            <label for="terminal no" class="form-label "><b>Terminal No</b></label>
+          </div>
+          <mat-form-field>
+            <mat-label>Enter Terminal Number</mat-label>
+            <input type="number" name="terminal no" class="form-control" matInput formControlName="terminalnumber"  maxlength="4"
+            [ngClass]="{ 'is-invalid': setupForm.get('terminalnumber')?.invalid && (setupForm.get('terminalnumber')?.dirty || setupForm.get('terminalnumber')?.touched) }">
+            <mat-error *ngIf="setupForm.get('terminalnumber')?.invalid && (setupForm.get('terminalnumber')?.dirty || setupForm.get('terminalnumber')?.touched)">
+              Input should not exceed four digits.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row hx-90">
+          <div class="col col-12 align-self-center">
+            <label for="terminal name" class="form-label "><b>Terminal Name</b></label>
+          </div>
+          <mat-form-field>
+            <input type="text" class="form-control" name="terminal name" matInput formControlName="terminalname">
+          </mat-form-field>
+        </div>
+        <div class="container-fluid fixed-bottom">
+          <div class="row hx-60 justify-content-end">
+            <div class="col col text-end  p-0">
+            <button class="justify-content-end btn btn-outline border-0" type="submit" [disabled]="setupForm.invalid" >
+            <span class="fa-stack fs-2 justify-content-end text-end">
+              <i class="fa-solid fa-circle fa-stack-2x blue  "></i>
+              <i class="fa-solid fa-floppy-disk fa-stack-1x fs-5 white"></i>
+            </span>
+            </button>
+          </div>
+          </div>
+        </div>
       </form>
-        <!-- <div class="row hx-70">
+    </div>
+  </div>
+</div>
+<!-- <div class="col.col-12 text-end mt-1 ">
+    <span class=" fa-stack fs-5 ">
+      <i class="fa-solid fa-circle fa-stack-2x blue "></i>
+      <i class="fa-solid fa-floppy-disk fa-stack-1x white fs-6"></i>
+    </span>
+  </div> -->
+<!-- <div class="row hx-70">
         <div class="col col-12 align-self-center">
           <label for="company" class="form-label"><b>Company</b></label>
           <select class="form-select"(change)="getCompanies($event)" [(ngModel)]="tcompany">
@@ -47,53 +117,3 @@
           </select>
         </div>
       </div> -->
-        <div class="row hx-90">
-          <div class="col col-12 align-self-center">
-            <label for="company" class="form-label"><b>Company</b></label>
-          </div>
-          <mat-form-field class="small-mat-form-field">
-            <mat-select (selectionChange)="getCompanies($event)" [(ngModel)]="tcompany" placeholder="Select a Company">
-              <mat-option *ngFor="let list of companies" [value]="list['Code']">
-                {{list['Name']}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="row hx-90">
-          <div class="col col-12 align-self-center">
-            <label for="store" class="form-label"><b>Store</b>
-              <i class="fa-solid fa-spin fa-spinner align-self-center p-2 fs-7" *ngIf="loader"></i>
-            </label>
-          </div>
-          <mat-form-field>
-            <mat-select [(ngModel)]="tstore" placeholder="Select a Store">
-              <mat-option *ngFor="let company of stores" [value]="company['Code']">{{company['Name']}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="row hx-90">
-          <div class="col col-12 align-self-center">
-            <label for="terminal no" class="form-label "><b>Terminal No</b></label>
-          </div>
-          <mat-form-field>
-            <input required maxlength="4" type="number" name="terminal no" class="form-control" matInput [(ngModel)]="tnum">
-          </mat-form-field>
-        </div>
-        <div class="row hx-10">
-          <div class="col col-12 align-self-center">
-            <label for="terminal name" class="form-label "><b>Terminal Name</b></label>
-          </div>
-          <mat-form-field>
-            <input type="text" class="form-control" name="terminal name" matInput [(ngModel)]="tname">
-          </mat-form-field>
-        </div>
-    </div>
-  </div>
-</div>
-<!-- <div class="col.col-12 text-end mt-1 ">
-    <span class=" fa-stack fs-5 ">
-      <i class="fa-solid fa-circle fa-stack-2x blue "></i>
-      <i class="fa-solid fa-floppy-disk fa-stack-1x white fs-6"></i>
-    </span>
-  </div> -->

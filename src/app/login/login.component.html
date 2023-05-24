@@ -9,22 +9,26 @@
     <div class="row hx-200 align-items-center">
       <div class="col col-12">
         <div class="container p-1 rounded-3">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)"novalidate>
           <div class=" input-group mb-3 mt-3">
             <span class="input-group-addon"> <i class="fa fa-user icon "></i></span>
-            <input type="text" class="form-control input border-bottom " placeholder="username" [(ngModel)]="username">
+            <input type="text" class="form-control input border-bottom " placeholder="username" formControlName="name">
+            <div *ngIf="loginForm.get('name')?.invalid && loginForm.get('name')?.touched" class="error-message"style="color: red;">Username should be at least 5 characters.</div>
           </div>
           <div class=" input-group mb-3">
             <span class="input-group-addon"> <i class="fa fa-lock icon"></i></span>
-            <input type="password" class="form-control input border-bottom" placeholder="password" [(ngModel)]="password">
+            <input type="password" class="form-control input border-bottom" placeholder="password"formControlName="password">
             <span class="input-group-addon"> <i class="fa-solid fa-eye-slash icon border-bottom fs-6"></i></span>
+            <!-- <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message"style="color: red;"></div> -->
           </div>
           <div class=" text-end ">
             <p class="text-grey ">Forgot password?</p>
           </div>
           <div class="text-center ">
             <!-- [routerLink]="['/dashboard']" -->
-            <button  (click)="validate()" type="submit" class="btn bg-blue rounded-pill text-white fs-6 px-4"><b>LOGIN</b></button>
+            <button  [disabled]="loginForm.invalid" type="submit" class="btn bg-blue rounded-pill text-white fs-6 px-4"><b>LOGIN</b></button>
           </div>
+        </form>
         </div>
       </div>
     </div>
