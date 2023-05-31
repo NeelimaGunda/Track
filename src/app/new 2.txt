@@ -1,0 +1,8 @@
+data_one is empty
+api call one
+data_one has data from api call one
+
+save this data in service layer
+nexttime when you load data initialize data_one from service layer
+make api call one
+update data_one with api call one data

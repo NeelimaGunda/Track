@@ -14,7 +14,7 @@ export class TerminalsetupComponent {
   bodyHeight: any = 0;
   stores: any = [];
   companies: any = [];
-  url: any = "http://93.177.125.95/aptintrack/";
+  url: any = "";
   tnum: any = 1234;
   tname: any = "apnt";
   tcompany: any = "";
@@ -58,15 +58,14 @@ export class TerminalsetupComponent {
       this.stores = data;
       console.log(this.stores);
     });
-
   }
   ngOnInit() {
-    this.setupForm = new FormGroup({
+    this.setupForm = new FormGroup({ // Reactive form group
       url: new FormControl('', [Validators.required]),
-      company: new FormControl('', [Validators.required]),
+      company: new FormControl('',[Validators.required]),
       store: new FormControl('', [Validators.required]),
-      terminalnumber: new FormControl('', [Validators.required, Validators.maxLength(4), Validators.pattern('\\d{4}')]),
-      terminalname: new FormControl('', [Validators.required])
+      terminalnumber: new FormControl('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[9|7|5]\\d{4}[A-Z]\\d{3}[A-Z]$')]),
+      terminalname: new FormControl('apnt', [Validators.required])
     });
     // this.setupForm.valueChanges.subscribe((value) => {
     //   console.log('Form Valid:', this.setupForm.valid);
@@ -75,73 +74,58 @@ export class TerminalsetupComponent {
     console.log("Calling init method in terminal setup");
     this.service.companysub.next(this.tcompany);
     this.service.storesub.next(this.tstore);
-    // If companies and stores length  is not equal to zero then it navigates to the login page otherwise it calls the fetchdata() function .
+    // If companies and stores length  is not equal to zero then it navigates to the login page.
     if (this.companies.length != 0 && this.stores.length != 0) {
       this.router.navigate(['/login']);
     }
-    // else
-    //   this.fetchData();
   }
+  // Method which is invoked when the form is submitted.
   Submit(form: FormGroup) {
-    console.log('Valid?', form.valid); // true or false
-    console.log(this.setupForm.get('terminalnumber')?.valid);
-    console.log('URl:', this.setupForm.get('url')?.valid);
+    console.log('Valid?', form.valid); 
     console.log(this.setupForm.get('company')?.valid);
-    console.log('Terminal Name', this.setupForm.value.terminalname);
-    console.log('Terminal Number', this.setupForm.value.terminalnumber);
+    console.log('Terminal Name:', this.setupForm.value.terminalname);
+    console.log('Terminal Number:', this.setupForm.value.terminalnumber);
     console.log(this.setupForm.value);
-    console.log(this.tname);
     this.url = this.setupForm.get('url')?.value;
     console.log(this.url);
+    this.tcompany = this.setupForm.get('company')?.value;
+    console.log(this.tcompany);
+    this.tstore = this.setupForm.get('store')?.value;
+    console.log(this.tstore);
     this.service.turlcode.next(this.url);
-    console.log(this.service.turl);
+    this.service.companysub.next(this.tcompany);
+    this.service.storesub.next(this.tstore);
     this.router.navigate(['/login']);
   }
+  // Method which is invoked when we press enter key after giving input to the url form field.
   onUrlSubmit() {
     if (this.setupForm.get('url')?.invalid) {
       return; // Do not proceed if URL field is invalid
     }
     this.url = this.setupForm.get('url')?.value;
-    this.tcompany = this.setupForm.get('company')?.value;
-    this.tstore = this.setupForm.get('store')?.value;
-    this.tnum = this.setupForm.get('terminalnumber')?.value;
-    this.tname = this.setupForm.get('terminalname')?.value;
     this.service.turlcode.next(this.url);
-    this.service.companysub.next(this.tcompany);
-    this.service.storesub.next(this.tstore);
-    this.service.terminalnumsub.next(this.tnum);
     console.log(this.url);
     if (!this.url || this.url.trim() === '') {
       this.urlError = false;
     }
     this.fetchData();
   }
-  // Printing the terminal setup form data in login component console.
-  // onclick() {
-  //   this.router.navigate(['/login']);
-  //   this.service.turlcode.next(this.formData.url);
-  //   console.log(this.service.turl);
-  //   this.service.companysub.next(this.tcompany);
-  //   console.log(this.service.company);
-  //   this.service.storesub.next(this.tstore);
-  //   console.log(this.service.store);
-  //   this.service.terminalnumsub.next(this.tnum);
-  //   console.log(this.service.terminalnum);
-  //   this.service.terminalnamesub.next(this.tname);
-  //   console.log(this.service.terminalname);
-  // }
   getCompanies(list: any) {
     console.log(list.value);
-    this.fetchData1(list.value);
+    this.fetchDataOne(list.value);
   }
   // function to make an API call to fetch the data of stores and subscribe to the retrieved data. 
-  fetchData1(list: any) {
+  fetchDataOne(list: any) {
     console.log("Calling fetch data in app component");
     this.loader = true;
     this.service.fetchImsStores(list).subscribe((data: any) => {
       console.log("Finished fetching data in app component")
       this.service.iMSStoresSub.next(data);
       this.loader = false;
+      if (this.stores.length > 0) {
+        const defaultStore = this.stores[1].Code; // Assuming the second option as the default value
+        this.setupForm.get('store')?.setValue(defaultStore);
+      }
     }, (err: any) => {
       console.log(err);
     })
@@ -153,6 +137,11 @@ export class TerminalsetupComponent {
       this.urlError = false;
       console.log("Finished fetching data in app component")
       this.service.iMSCompaniesSub.next(data);
+      if (this.companies.length > 0) {
+        const defaultCompany = this.companies[1].Code; // Assuming the second option as the default value
+        this.setupForm.get('company')?.setValue(defaultCompany);
+        this.fetchDataOne(defaultCompany);
+      }
     }, err => {
       if (err.status === 404) {
         this.urlError = true; // Handle 404 error and set error flag

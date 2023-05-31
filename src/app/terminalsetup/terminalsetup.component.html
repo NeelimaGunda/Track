@@ -27,7 +27,7 @@
             <label for="url" class="form-label"><b>URL</b></label>
           </div>
           <mat-form-field>
-            <input type="url" class="form-control" name="url"placeholder="Enter URL" matInput formControlName="url" (keyup.enter)="onUrlSubmit()">
+            <input type="url" class="form-control" name="url"placeholder="Enter URL" matInput formControlName="url" (click)="onUrlSubmit()">
             <div *ngIf="setupForm.get('url')?.invalid && setupForm.get('url')?.touched || urlError " class="error-message"style="color: red;">URL not found</div>
           </mat-form-field>
         </div>
@@ -64,10 +64,11 @@
           </div>
           <mat-form-field>
             <mat-label>Enter Terminal Number</mat-label>
-            <input type="number" name="terminal no" class="form-control" matInput formControlName="terminalnumber"  maxlength="4"
+            <input type="text" name="terminal no" class="form-control" matInput formControlName="terminalnumber"  maxlength="10" placeholder="92345A456F"
             [ngClass]="{ 'is-invalid': setupForm.get('terminalnumber')?.invalid && (setupForm.get('terminalnumber')?.dirty || setupForm.get('terminalnumber')?.touched) }">
+            <mat-hint>Note:The first digit can only be 5,7 or 9.</mat-hint>
             <mat-error *ngIf="setupForm.get('terminalnumber')?.invalid && (setupForm.get('terminalnumber')?.dirty || setupForm.get('terminalnumber')?.touched)">
-              Input should not exceed four digits.
+             Input didn't meet the criteria.
             </mat-error>
           </mat-form-field>
         </div>

@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="row mt-2 px-2">
+        <label for="name"><b>Enter Firstname:</b></label>
+        <input type="text" [(ngModel)]="name" (ngModelChange)="printFormData()">
+        <button  class="mt-2"type="submit" (click)="onSubmit()">submit</button>
+    </div>
+</div>
+<router-outlet></router-outlet>

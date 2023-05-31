@@ -228,7 +228,13 @@ export class BodyComponent {
     console.log(height.offsetHeight);
     this.bodyHeight = height.offsetHeight;
     let cdata: any = localStorage.getItem('modules');
-    this.modules = JSON.parse(cdata);
+    if (cdata == null) {
+      cdata = [];
+    }
+    else {
+      this.modules = JSON.parse(cdata);
+      console.log(this.modules);
+    }
     console.log(this.modules);
     this.service.iMSModulesSub.subscribe((data: any) => {
       this.modules = data;
@@ -236,8 +242,6 @@ export class BodyComponent {
     this.type = this.service.moduleCode;
     console.log(this.type);
     console.log(this.service.iMSModules);
-    // this.modules = this.service.iMSModules;
-    // console.log(this.modules);
     console.log(this.menus);
     console.log(this.service.iMSSubmodules);
     this.submodule = this.service.iMSSubmodules;
@@ -250,8 +254,6 @@ export class BodyComponent {
     this.service.iMSSubmodulesSub.subscribe((data: any) => {
       this.submodule = data;
     })
-    // this.type = this.service.moduleCode;
-    // console.log(this.type);
   }
   goTopage(b: any) {
     console.log(b.Code);
@@ -262,46 +264,14 @@ export class BodyComponent {
     console.log(this.type);
     this.router.navigate(['dashboard/gmodule']);
   }
-  // back() {
-  //   this.b = true;
-  //   this.a = false;
-  //   this.dots = true;
-  //   this.list = true;
-  //   this.arrow = false;
-  //   this.head = true;
-  //   this.nav = true;
-  //   this.menu = false;
-  //   this.router.navigate(['/dashboard']);
-  // }
-  // goBack() {
-  //   this.location.back();
-  //   this.service.bsub.next(true);
-  //   this.service.asub.next(false);
-  //   this.service.genericControllerJsonSubject.next(this.physical = {});
-  // }
-  // page(moduleCode: any) {
-  //   console.log(moduleCode);
-  //   this.service.SubmodulesSub.next(moduleCode);
-  //   this.selectedModule = moduleCode;
-  //   this.accordion = this.submodule.filter((e: any) => e['ModuleCode'] == moduleCode);
-  // }
   ngOnInit() {
     console.log(this.modules);
-    if (this.modules == null || this.modules.length == 0) { // && this.stores!=null
-      // console.log(this.companies[1]);
+    if (this.modules == null || this.modules.length == 0) { 
       this.fetchData();
       this.router.navigate(['']);
     }
     else
       this.loader = false;
-    //   this.fetchData();
-    // if (this.modules!=null) {
-    //   // this.loader = false;
-    //   // this.fetchData();
-    // }
-    // else if(this.modules!=0){
-
-
   }
   fetchData() {
     console.log("Calling fetch data in app component");

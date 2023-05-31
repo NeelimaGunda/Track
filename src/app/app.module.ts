@@ -41,6 +41,9 @@ import { ModulepipePipe } from './modulepipe.pipe';
 import { ModuleComponent } from './module/module.component';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatSelectModule} from '@angular/material/select';
+import { DemoComponent } from './demo/demo.component';
+import { Demo1Component } from './demo1/demo1.component';
+import { DemoPipe } from './demo.pipe';
 // import { MatCarouselModule } from '@ngmodule/material-carousel';
 @NgModule({
   declarations: [
@@ -67,7 +70,10 @@ import {MatSelectModule} from '@angular/material/select';
     BodyComponent,
     BinPipe,
     ModulepipePipe,
-    ModuleComponent
+    ModuleComponent,
+    DemoComponent,
+    Demo1Component,
+    DemoPipe
 
 
   ],

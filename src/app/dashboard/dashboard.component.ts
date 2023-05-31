@@ -231,12 +231,22 @@ export class DashboardComponent {
     this.bodyHeight = height.offsetHeight;
     // Retrieving modules data from the local storage.
     let cdata: any = localStorage.getItem('modules');
-    this.modules = JSON.parse(cdata);
-    console.log(this.modules);
+    if (cdata == null) {
+      cdata = [];
+    }
+    else {
+      this.modules = JSON.parse(cdata);
+      console.log(this.modules);
+    }
     // Retrieving submodules data from the local storage.
     let data: any = localStorage.getItem('submodules');
-    this.submodule = JSON.parse(data);
-    console.log(this.submodule);
+    if (data == null) {
+      data = [];
+      console.log(data);
+    } else {
+      this.submodule = JSON.parse(data);
+      console.log(this.submodule);
+    }
     //  If the data for modules is not available in the local storage, an API call will be initiated to fetch the data, 
     // and the retrieved data will be subscribed to.
     this.service.iMSModulesSub.subscribe((data: any) => {
@@ -318,8 +328,8 @@ export class DashboardComponent {
     this.service.genericControllerJsonSubject.next(this.physical = {});
 
   }
-  pagination1(){
-    this.pagination=true;
+  pagination1() {
+    this.pagination = true;
   }
   ngOnInit() {
     this.service.searchsub.next(this.search);
@@ -356,11 +366,11 @@ export class DashboardComponent {
       console.log(this.physical);
     })
     console.log(this.modules);
-    if (this.modules.length != 0) {
+    if (this.modules.length == 0 || this.modules == null) {
       this.fetchData();
     }
-    else {
-      console.log(this.modules);
+    if (this.submodule.length == 0 || this.submodule == null) {
+      this.fetchSubData();
     }
   }
   // function to make an API call to fetch the data of modules and subscribe to the retrieved data. 
@@ -384,12 +394,12 @@ export class DashboardComponent {
       console.log("Finished fetching data in app component")
       this.service.iMSSubmodulesSub.next(data);
       this.loader = false;
-      this.fetchData1();
+      this.fetchDataOne();
     }, (err) => {
       console.log(err);
     })
   }
-  fetchData1() {
+  fetchDataOne() {
     console.log("Calling fetch data in app component");
     this.loader = true;
     this.service.fetchImsBins().subscribe((data: any) => {

@@ -358,8 +358,8 @@
                                 </div>
                             </div>
                             <div class="col col-2 align-self-center mt-4">
-                                <button mat-raised-button class="btn" type="button"><i class="fa-solid fa-ellipsis grey fs-5"
-                                        (click)="bins()"></i> </button>
+                                <button mat-raised-button class="btn" type="button"><i
+                                        class="fa-solid fa-ellipsis grey fs-5" (click)="bins()"></i> </button>
                             </div>
                         </div>
                         <div class="row overflow-auto " [style.height.px]="bodyHeight-45" *ngIf="physical.Bin">
@@ -448,7 +448,7 @@
                                         <span class=""><i class="fa-solid fa-caret-down"></i></span>
                                     </button>
                                 </span>
-                                <input type="float number" step="1.0" [(ngModel)]="quantity" max="5.0" min="1.0"
+                                <input type="float number" step="1.0" max="5.0" min="1.0"
                                     [(ngModel)]="quantity" name="quantity" id="number"
                                     class="quantity-field border-0 text-center w-25">
                                 <span class="input-group-btn">
@@ -468,23 +468,16 @@
                         <div class="row hx-90" *ngIf="physical.date">
                             <div class="col col-12 align-self-center">
                                 <label for="date" class="form-label"><b>Expiry Date</b></label>
-                                <!-- <div class="input-group">
-                                    <input type="text" class="form-control" name="reason" data-date-format="DD/MM/YYYY"
-                                        placeholder="DD/MM/YYYY" id="date" />
-                                    <span class="input-group-append">
-                                        <span class="input-group-text bg-light d-block ">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-                                    </span>
-                                </div> -->
+                                <input type="date" class="form-control" name="date" placeholder="MM/DD/YYYY"
+                                    id="date" />
                             </div>
-                            <mat-form-field appearance="outline">
+                            <!-- <mat-form-field appearance="outline">
                                 <mat-label></mat-label>
                                 <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" name="date"
                                     class="hx-10 p-0" [(ngModel)]="bind.date">
                                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field>
+                            </mat-form-field> -->
                         </div>
                         <div class="row hx-70" *ngIf="physical.Description">
                             <div class="col col-12 align-self-center ">

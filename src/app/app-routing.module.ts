@@ -20,6 +20,8 @@ import { BinsComponent } from './bins/bins.component';
 import { StockComponent } from './stock/stock.component';
 import { BodyComponent } from './body/body.component';
 import { ModuleComponent } from './module/module.component';
+import { DemoComponent } from './demo/demo.component';
+import { Demo1Component } from './demo1/demo1.component';
 
 
 const routes: Routes = [
@@ -60,7 +62,14 @@ const routes: Routes = [
   { path: "bins", component: BinsComponent },
   { path: "bins", component: BinsComponent },
   { path: "stock", component: StockComponent },
-  { path: "body", component: BodyComponent }
+  { path: "body", component: BodyComponent },
+  {
+    path: "demo", component: DemoComponent,
+    children: [
+      { path: "demo1", component: Demo1Component }
+    ]
+  }
+
 ];
 
 @NgModule({
