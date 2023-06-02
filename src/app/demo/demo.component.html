@@ -1,8 +1,10 @@
 <div class="container">
     <div class="row mt-2 px-2">
         <label for="name"><b>Enter Firstname:</b></label>
-        <input type="text" [(ngModel)]="name" (ngModelChange)="printFormData()">
-        <button  class="mt-2"type="submit" (click)="onSubmit()">submit</button>
+        <input type="text" #input>
+        <button  class="mt-2"type="submit" (click)="onSubmit(input)">submit</button>
     </div>
+
+<app-demo1 [namevalue]="name" *ngIf="destroy"></app-demo1>
+<button  class="mt-2"type="submit" (click)="onDestroy()">destroy</button>
 </div>
-<router-outlet></router-outlet>

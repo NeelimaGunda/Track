@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./demo.component.css']
 })
 export class DemoComponent {
-  name: any = "neelima";
+  name: any = "";
+  destroy:boolean=true;
   constructor(private service: DemoService, private router: Router) {
 
   }
@@ -21,25 +22,28 @@ export class DemoComponent {
     // observer.complete();
   });
    ngOnInit() {
-    console.log("hi");
     this.myObservable.subscribe((val:any) => {
-      console.log(val);
+      // console.log(val);
     }, (error:any) => {
       alert(error.message);
     }, () => {
       alert("completed");
     })
   }
-  onSubmit() {
+  onSubmit(inputEl:HTMLInputElement) {
     console.log(this.name);
-    this.service.Namesub.next(this.name);
-    this.router.navigate(['/demo/demo1']);
+    this.name = inputEl.value;
+    // this.service.Namesub.next(this.name);
+    // this.router.navigate(['/demo/demo1']);
   }
   submit() {
     console.log("Blur event");
   }
-  printFormData() {
-    console.log(this.name);
-    this.service.Namesub.next(this.name);
+  // printFormData() {
+  //   console.log(this.name);
+  //   this.service.Namesub.next(this.name);
+  // }
+  onDestroy(){
+    this.destroy = false;
   }
 }

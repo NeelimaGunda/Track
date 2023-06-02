@@ -72,7 +72,6 @@ export class TerminalsetupComponent {
     //   console.log(this.setupForm.value);
     // });
     console.log("Calling init method in terminal setup");
-    this.service.companysub.next(this.tcompany);
     this.service.storesub.next(this.tstore);
     // If companies and stores length  is not equal to zero then it navigates to the login page.
     if (this.companies.length != 0 && this.stores.length != 0) {

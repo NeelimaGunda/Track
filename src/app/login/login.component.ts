@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   // }
   ngOnInit() {
     this.loginForm = new FormGroup({
-      name: new FormControl('',[Validators.required,Validators.minLength(5)]),
+      name: new FormControl('',[Validators.required,Validators.email]),
       password: new FormControl('',(Validators.required, Validators.minLength(6))),
     });
     // If companies length is equal to zero or null then it navigates to the Terminal component otherwise it calls the fetchdata() function .
