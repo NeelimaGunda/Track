@@ -13,4 +13,7 @@ export class DemoService {
       console.log(this.Name);
     })
    }
+   onSubmit(){
+    alert("form submitted");
+   }
 }

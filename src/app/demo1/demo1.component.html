@@ -1,5 +1,9 @@
-<div class="container">
-    <div class="row">
-        <p> username:{{namevalue}}</p>
+<div class="container p-0">
+    <div class="row border align-items-center mx-2 mt-2">
+        <span> username:{{namevalue}}</span>
+    </div>
+    <div class="row mt-1 mx-2 mb-1">
+        <!-- <button (click)="onClick()" type="button">Custom Event</button> -->
+        <ng-content></ng-content>
     </div>
 </div>

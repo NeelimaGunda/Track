@@ -2,7 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MainserviceService } from '../mainservice.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { InfoComponent } from '../info/info.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   // password: any = "Gunda";
   company: any;
   loader: boolean = false;
-  constructor(private router: Router, private service: MainserviceService) {
+  constructor(private router: Router, private service: MainserviceService, private bottomSheet: MatBottomSheet) {
     //  If the data for company is not available in the local storage, an API call will be initiated to fetch the data, 
     // and the retrieved data will be subscribed to.
     let cdata: any = localStorage.getItem('company');
@@ -37,6 +38,9 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['']);
     }
     this.fetchData();
+  }
+  open() {
+    // this.bottomSheet.open(InfoComponent);
   }
   onSubmit(form: FormGroup) {
     console.log("Validating user data");

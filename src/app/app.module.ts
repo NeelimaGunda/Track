@@ -44,6 +44,9 @@ import {MatSelectModule} from '@angular/material/select';
 import { DemoComponent } from './demo/demo.component';
 import { Demo1Component } from './demo1/demo1.component';
 import { DemoPipe } from './demo.pipe';
+import { TableComponent } from './table/table.component';
+import { LongPressDirective } from './long-press.directive';
+import { ChangeComponent } from './change/change.component';
 // import { MatCarouselModule } from '@ngmodule/material-carousel';
 @NgModule({
   declarations: [
@@ -73,8 +76,10 @@ import { DemoPipe } from './demo.pipe';
     ModuleComponent,
     DemoComponent,
     Demo1Component,
-    DemoPipe
-
+    DemoPipe,
+    TableComponent,
+    LongPressDirective,
+    ChangeComponent
 
   ],
   imports: [

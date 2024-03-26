@@ -413,3 +413,14 @@ export class DashboardComponent {
 
   }
 }
+// onTouchStart(event: any) {
+//   this.longPressTimeout = setTimeout(() => {
+//     this.list = true;
+//   }, 500);
+// }
+// onTouchEnd() {
+//   clearTimeout(this.longPressTimeout);
+//   if (this.list) {
+//     this.list = false;
+//   }
+// }

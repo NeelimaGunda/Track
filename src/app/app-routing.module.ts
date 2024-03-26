@@ -22,11 +22,14 @@ import { BodyComponent } from './body/body.component';
 import { ModuleComponent } from './module/module.component';
 import { DemoComponent } from './demo/demo.component';
 import { Demo1Component } from './demo1/demo1.component';
-
+import { TableComponent } from './table/table.component';
+import { ChangeComponent } from './change/change.component';
 
 const routes: Routes = [
+  {path:"change", component: ChangeComponent},
   { path: "", component: TerminalsetupComponent },
   { path: "login", component: LoginComponent },
+  { path: "table", component: TableComponent },
   { path: "info", component: InfoComponent },
   { path: "module", component: ModuleComponent },
   { path: "physical", component: PhysicalComponent },
